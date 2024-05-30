@@ -34,9 +34,10 @@ class DatabaseSeeder extends Seeder
 
         $role = Role::create(['name' => 'Admin']);
         $arrayOfPermissionNames = [
-            'view-user',
-            'edit-user',
-            'delete-user'
+            'Crear usuarios',
+            'Ver usuarios',
+            'Editar usuarios',
+            'Eliminar usuarios',
         ];
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
             return ['name' => $permission, 'guard_name' => 'web'];

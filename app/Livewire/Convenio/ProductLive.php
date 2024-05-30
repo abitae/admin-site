@@ -47,7 +47,6 @@ class ProductLive extends Component
                     ->orWhere('razon_proveedor', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('razon_entidad', 'LIKE', '%' . $this->search . '%')
             )
-            ->whereBetween('fecha_aceptacion', [$this->start_date, $this->end_date])
             ->orderBy('fecha_aceptacion', 'asc')
             ->paginate($this->num, '*', 'page');
     }

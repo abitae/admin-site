@@ -46,7 +46,7 @@
                     </ol>
                 </nav>
                 <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                    {{ $roleForm->name }}All roles
+                    All roles
                 </h1>
             </div>
             <div class="sm:flex">
@@ -104,9 +104,9 @@
                     <x-download-button>
                         Export
                     </x-download-button>
-                    <x-download-button>
-                        Export
-                    </x-download-button>
+                    <x-upload-button>
+                        Import
+                    </x-upload-button>
                     @if ($isOpenModal)
                         <x-modal title="{{ isset($roleForm->role) ? 'Update role' : 'Create role' }}" maxWidth='sm'>
                             <form class="form"
@@ -120,13 +120,6 @@
                                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
                                                         class="font-medium">Error!</span> {{ $message }}.</p>
                                             @enderror
-                                        </div>
-                                        <div wire:ignore class="col-span-6 sm:col-span-6">
-                                            <select id="select2">
-                                                <option value="AL">Alabama</option>
-                                                <option value="WY2">Wyoming2</option>
-                                                <option value="WY">Wyoming</option>
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +152,7 @@
                             </th>
                             <th scope="col"
                                 class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Roles
+                                Permisos
                             </th>
                             <th scope="col"
                                 class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -181,9 +174,10 @@
                                 </td>
                                 <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     @forelse ($role->permissions as $permission)
-                                        <div class="badge badge-light-success fw-bold">
+                                        <span
+                                            class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500">
                                             {{ $permission->name }}
-                                        </div>
+                                        </span>
                                     @empty
                                         <div class="badge badge-light-danger fw-bold">
                                             No permissions
@@ -191,6 +185,8 @@
                                     @endforelse
                                 </td>
                                 <td class="p-4 space-x-2 whitespace-nowrap">
+                                    <x-edit2-button wire:click='permission({{ $role->id }})'>
+                                    </x-edit2-button>
                                     <x-edit-button wire:click='update({{ $role->id }})'>
                                     </x-edit-button>
                                     <x-delete-button wire:click='delete({{ $role->id }})'
@@ -206,12 +202,4 @@
             </div>
         </div>
     </div>
-
 </div>
-@push('js')
-    <script>
-        $(document).ready(function() {
-            $('#select2').select2();
-        });
-    </script>
-@endpush

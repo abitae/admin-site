@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Config\PermissionsLive;
 use App\Livewire\Crm\ContactLive;
 use App\Livewire\Crm\CustomerLive;
 use App\Livewire\Config\RolesLive;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/users', UsersLive::class)->name('config.users');
     Route::get('/roles', RolesLive::class)->name('config.roles');
+    Route::get('/permissions/{id}', PermissionsLive::class)->name('config.permissions');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/acuerdos', AcuerdoMarcoLive::class)->name('convenio.acuerdos');

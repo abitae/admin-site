@@ -69,24 +69,8 @@ class RolesLive extends Component
             $this->message('error', 'Error!', 'Verifique los datos ingresados!');
         }
     }
-    public function permision(Role $role){
-        $this->roleForm->reset();
-        $this->roleForm->setRole($role);
-        //dd($role->permissions->toArray());
-        $this->permisions = $role->permissions->pluck('name');
-        $this->isOpenModalPer = true;
-        //$this->permisions = Permission::all()->pluck('name');
-    }
-    public function permisionRole()
-    {
-        if ($this->roleForm->permision($this->permisions)) {
-            $this->message('success', 'En hora buena!', 'Registro actualizado correctamente!');
-            $this->isOpenModalPer = false;
-        } else {
-            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
-        }
-        //
-        //$this->permisions = Permission::all()->pluck('name');
+    public function permission(Role $id){
+        return \Redirect::route('config.permissions', [$id]);
     }
     public function updatedSearch($value)
     {

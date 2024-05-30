@@ -25,10 +25,11 @@ class ImportProductLive extends Component
             Excel::import(new ProductsImport, $this->file);
             $this->message('success', 'En hora buena!', 'Archivo procesado correctamente!');
             $this->file = null;
-        } 
-        catch (\Exception $e) {
+            infoLog('CM import', \Auth::user()->email);
+        } catch (\Exception $e) {
             $this->message('error', 'Error!', 'No se pudo procesar el archivo!');
             $this->file = null;
+            errorLog('CM import', $e);
         }
     }
     private function message($tipo, $tittle, $message)
