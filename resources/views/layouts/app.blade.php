@@ -16,6 +16,8 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
 </head>
 <body class="bg-gray-50 dark:bg-gray-800">
     <x-nav>

@@ -1,6 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Crm\ContactLive;
+use App\Livewire\Crm\CustomerLive;
+use App\Livewire\Config\RolesLive;
+use App\Livewire\Config\UsersLive;
+use App\Livewire\Convenio\AcuerdoMarcoLive;
+use App\Livewire\Convenio\ImportProductLive;
+use App\Livewire\Convenio\ProductLive as ProductCmLive; //Convenio Marco
+use App\Livewire\Almacen\BrandLive;
+use App\Livewire\Almacen\CategoryLive;
+use App\Livewire\Almacen\LineLive;
+use App\Livewire\Almacen\ProductLive;
+use App\Livewire\Crm\NegocioLive;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,4 +29,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware('auth')->group(function () {
+    Route::get('/users', UsersLive::class)->name('config.users');
+    Route::get('/roles', RolesLive::class)->name('config.roles');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/acuerdos', AcuerdoMarcoLive::class)->name('convenio.acuerdos');
+    Route::get('/products-data', ProductCmLive::class)->name('convenio.data');
+    Route::get('/products-import', ImportProductLive::class)->name('convenio.import');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/products', ProductLive::class)->name('almacen.products');
+    Route::get('/brands', BrandLive::class)->name('almacen.brands');
+    Route::get('/lines', LineLive::class)->name('almacen.lines');
+    Route::get('/categories', CategoryLive::class)->name('almacen.categories');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/customers', CustomerLive::class)->name('crm.customers');
+    Route::get('/contacts', ContactLive::class)->name('crm.contacts');
+    Route::get('/negocios', NegocioLive::class)->name('crm.negocios');
+});
+require __DIR__ . '/auth.php';
