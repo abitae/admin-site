@@ -13,6 +13,7 @@ class AcuerdoMarcoForm extends Form
     public ?AcuerdoMarco $acuerdoMarco;
     #[Validate('required|min:5|unique:acuerdo_marcos')]
     public $code = '';
+    #[Validate('required')]
     public $name = '';
     public $isActive = true;
     public function setAcuerdoMarco(AcuerdoMarco $acuerdoMarco)
@@ -36,9 +37,10 @@ class AcuerdoMarcoForm extends Form
     public function update()
     {
         try {
-            $this->acuerdoMarco->update(
-                $this->all()
-            );
+            $this->acuerdoMarco->update([
+                'code' => $this->code,
+                'name' => $this->name,
+            ]);
             infoLog('AcuerdoMarco update', $this->name);
             return true;
         } catch (\Exception $e) {

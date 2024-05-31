@@ -42,9 +42,10 @@ class UserForm extends Form
     public function update()
     {
         try {
-            $this->user->update(
-                $this->all()
-            );
+            $this->user->update([
+                'name' => $this->name,
+                'email' => $this->email,
+            ]);
             $user = User::find($this->user->id);
             $user->syncRoles([$this->role]);
             infoLog('User update', $this->email);

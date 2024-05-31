@@ -44,6 +44,7 @@ class BrandLive extends Component
     }
     public function delete(Brand $brand)
     {
+        
         if ($this->brandForm->destroy($brand->id)) {
             $this->message('success', 'En hora buena!', 'Registro eliminado correctamente!');
         } else {

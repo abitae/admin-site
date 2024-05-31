@@ -33,9 +33,9 @@ class RoleForm extends Form
     public function update()
     {
         try {
-            $this->role->update(
-                $this->all()
-            );
+            $this->role->update([
+                'name' => $this->name,
+            ]);
             infoLog('Role update', $this->name);
             return true;
         } catch (\Exception $e) {

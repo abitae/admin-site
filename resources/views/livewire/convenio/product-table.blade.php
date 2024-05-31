@@ -42,7 +42,7 @@
                     <tbody class="bg-white dark:bg-gray-800">
                         @forelse ($this->datas as $data)
                             <tr  wire:key='product-{{ $data->id }}'>
-                                <td class="p-4 text-xs font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                <td class="p-4 min-w-full text-xs font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ substr($data->orden_electronica, 0, -1) . str_repeat('0', 1) }}
                                     <br>
                                     {{ $data->orden_electronica }}

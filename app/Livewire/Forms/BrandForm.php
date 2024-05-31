@@ -36,9 +36,10 @@ class BrandForm extends Form
     public function update()
     {
         try {
-            $this->brand->update(
-                $this->all()
-            );
+            $this->brand->update([
+                'code' => $this->code,
+                'name' => $this->name,
+            ]);
             infoLog('Brand update', $this->name);
             return true;
         } catch (\Exception $e) {
@@ -51,7 +52,7 @@ class BrandForm extends Form
         try {
             $brand = Brand::find($id);
             $brand->delete();
-            infoLog('Brand deleted', $brand->email);
+            infoLog('Brand deleted', $brand->name);
             return true;
         } catch (\Exception $e) {
             errorLog('Brand deleted', $e);
@@ -64,7 +65,7 @@ class BrandForm extends Form
             $brand = Brand::find($id);
             $brand->isActive = !$brand->isActive;
             $brand->save();
-            infoLog('Brand estado ' . $brand->isActive, $brand->email);
+            infoLog('Brand estado ' . $brand->isActive, $brand->name);
             return true;
         } catch (\Exception $e) {
             errorLog('Brand estado', $e);

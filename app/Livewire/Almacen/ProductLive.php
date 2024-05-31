@@ -30,7 +30,6 @@ class ProductLive extends Component
     public $lineFilter;
     public $brandFilter;
 
-    protected $paginationTheme = "bootstrap";
     #[Computed]
     public function brands()
     {
@@ -157,7 +156,7 @@ class ProductLive extends Component
         $this->alert($tipo, $tittle, [
             'position' => 'top-end',
             'timer' => 3000,
-            'toast' => true,
+            'toast' => false,
             'text' => $message,
             'timerProgressBar' => true,
         ]);

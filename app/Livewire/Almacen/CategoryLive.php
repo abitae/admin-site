@@ -19,7 +19,6 @@ class CategoryLive extends Component
     public $num = 10;
     public $isOpenModal = false;
     public $isOpenModalExport = false;
-    protected $paginationTheme = "bootstrap";
     #[Computed]
     public function categories()
     {

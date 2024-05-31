@@ -38,9 +38,10 @@ class LineForm extends Form
     public function update()
     {
         try {
-            $this->line->update(
-                $this->all()
-            );
+            $this->line->update([
+                'code' => $this->code,
+                'name' => $this->name,
+            ]);
             infoLog('Line update', $this->name);
             return true;
         } catch (\Exception $e) {

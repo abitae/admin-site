@@ -38,9 +38,10 @@ class CategoryForm extends Form
     public function update()
     {
         try {
-            $this->category->update(
-                $this->all()
-            );
+            $this->category->update([
+                'code' => $this->code,
+                'name' => $this->name,
+            ]);
             infoLog('Category update', $this->name);
             return true;
         } catch (\Exception $e) {
@@ -53,7 +54,7 @@ class CategoryForm extends Form
         try {
             $category = Category::find($id);
             $category->delete();
-            infoLog('Category deleted', $category->email);
+            infoLog('Category deleted', $category->name);
             return true;
         } catch (\Exception $e) {
             errorLog('Category deleted', $e);
@@ -66,7 +67,7 @@ class CategoryForm extends Form
             $category = Category::find($id);
             $category->isActive = !$category->isActive;
             $category->save();
-            infoLog('Category estado ' . $category->isActive, $category->email);
+            infoLog('Category estado ' . $category->isActive, $category->name);
             return true;
         } catch (\Exception $e) {
             errorLog('Category estado', $e);
