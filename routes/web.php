@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Config\PermissionsLive;
+use App\Livewire\Convenio\DetailCmLive;
 use App\Livewire\Crm\ContactLive;
 use App\Livewire\Crm\CustomerLive;
 use App\Livewire\Config\RolesLive;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/acuerdos', AcuerdoMarcoLive::class)->name('convenio.acuerdos');
     Route::get('/products-data', ProductCmLive::class)->name('convenio.data');
     Route::get('/products-import', ImportProductLive::class)->name('convenio.import');
+    Route::get('/detail/{id}', DetailCmLive::class)->name('convenio.detail');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/products', ProductLive::class)->name('almacen.products');

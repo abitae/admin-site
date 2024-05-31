@@ -145,14 +145,16 @@
                         </div>
                         <form wire:submit='import' enctype="multipart/form-data">
                             <div>
-                                <input wire:model='file' id="dropzone-file" type="file" class="hidden" />
+                                <input wire:model='file' id="dropzone-file" wire:loading.attr="disabled" wire:target='import' type="file" class="hidden" />
                                 @if ($file)
-                                    <x-purple-button type='submit'>
-                                        Procesar
-                                        <div class="item-center" wire:loading wire:target='import'>
-                                            <i class="fa-solid fa-spinner fa-spin"></i>
+                                    <x-process-button  type='submit'>
+                                        <div wire:loading.remove wire:target='import'>
+                                            Procesar
                                         </div>
-                                    </x-purple-button>
+                                        <div wire:loading wire:target='import'>
+                                            Procesando<i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                                        </div>
+                                    </x-process-button>
                                 @endif
                             </div>
                         </form>

@@ -15,18 +15,18 @@ class ProductLive extends Component
     use WithPagination, WithoutUrlPagination;
     public $search = '';
     public $num = 10;
-    public $convenioMarco;
+    public $convenioMarco = '';
     public $catalogoMarco;
     public $searchMarca;
+    public $searchPartNumber;
     public $start_date;
     public $end_date;
     public $dateNow;
 
     public function mount()
     {
-        $this->dateNow = Carbon::now('GMT-5')->format('Y-m-d');
-        $this->start_date = now()->startOfDay();
-        $this->end_date = now()->endOfDay();
+        $this->start_date = Carbon::now('GMT-5')->startOfDay()->format('Y-m-d');
+        $this->end_date = Carbon::now('GMT-5')->endOfDay()->format('Y-m-d');
     }
     #[Computed]
     public function acuerdosMarco()
@@ -37,7 +37,8 @@ class ProductLive extends Component
     public function datas()
     {
         return ProductData::where('cod_acuerdo_marco', $this->convenioMarco)
-            ->where('marca_ficha_producto', 'LIKE', '%' . $this->searchMarca . '%')
+            ->Where('numero_parte', 'LIKE', '%' . $this->searchPartNumber . '%')
+            ->Where('marca_ficha_producto', 'LIKE', '%' . $this->searchMarca . '%')
             ->where(
                 fn($query)
                 => $query
@@ -47,14 +48,22 @@ class ProductLive extends Component
                     ->orWhere('razon_proveedor', 'LIKE', '%' . $this->search . '%')
                     ->orWhere('razon_entidad', 'LIKE', '%' . $this->search . '%')
             )
-            ->orderBy('fecha_aceptacion', 'asc')
+            ->whereBetween("fecha_aceptacion", array($this->start_date, $this->end_date))
+            ->orderBy('fecha_aceptacion', 'desc')
             ->paginate($this->num, '*', 'page');
     }
     public function render()
     {
         return view('livewire.convenio.product-live');
     }
+    public function detail(ProductData $id){
+        return \Redirect::route('convenio.detail', [$id]);
+    }
     public function updatedConvenioMarco($value)
+    {
+        $this->resetPage();
+    }
+    public function updatedSearchMarca($value)
     {
         $this->resetPage();
     }

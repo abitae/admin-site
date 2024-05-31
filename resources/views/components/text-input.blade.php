@@ -1,6 +1,6 @@
 @props(['type','label', 'for', 'placeholder', 'required' => false, 'disabled' => false])
 
-<label for="{{ $for }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+<label for="{{ $for }}" class="block text-sm font-medium text-gray-900 dark:text-white">
     {{ $label }}
 </label>
 <input {{ $disabled ? 'disabled' : '' }} {{ $required ? 'required' : '' }} placeholder="{{ $placeholder }}"

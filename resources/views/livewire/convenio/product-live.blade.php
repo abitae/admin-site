@@ -1,134 +1,110 @@
 <div>
-    <div class="d-flex flex-column flex-column-fluid">
-        <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-            <!--begin::Toolbar container-->
-            <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
-
-                <!--begin::Page title-->
-                <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                    <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                        ORDENES PERU COMPRAS</h1>
-                    <!--end::Title-->
-                    <!--begin::Breadcrumb-->
-                    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">
-                            <a href="/dashboard" class="text-muted text-hover-primary">Dashboard</a>
+    <div
+        class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+        <div class="w-full mb-1">
+            <div class="mb-4">
+                <nav class="flex mb-5" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
+                        <li class="inline-flex items-center">
+                            <a href="/dashboard"
+                                class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
+                                <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                    </path>
+                                </svg>
+                                Dashboard
+                            </a>
                         </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
+                                    Config
+                                </span>
+                            </div>
                         </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Ordenes Peru Compras </li>
-                        <!--end::Item-->
-                    </ul>
-                    <!--end::Breadcrumb-->
-                </div>
-                <!--end::Page title-->
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
+                                    Users
+                                </span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
             </div>
-            <!--end::Toolbar container-->
         </div>
-        <!--end::Toolbar-->
-        <!--begin::Content-->
-        <div id="kt_app_content" class="app-content flex-column-fluid">
-            <!--begin::Content container-->
-            <div id="kt_app_content_container" class="app-container container-xxl">
-                <!--begin::Card-->
-                <div class="card">
-                    <!--begin::Card header-->
-                    <div class="card-header border-0 pt-6">
-                        <!--begin::Card title-->
-                        <div class="card-title">
-                            <!--begin::Search-->
-                            <div class="d-flex align-items-center position-relative my-1 m-5">
-                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                </i>
-                                <input type="text" wire:model.live.debounce.1000ms="search"
-                                    class="form-control form-control-solid w-250px ps-13"
-                                    placeholder="Proveedor/Entidad" />
-                            </div>
-                            <!--end::Search-->
-                            <!--begin::Search-->
-                            <div class="d-flex align-items-center position-relative my-1 m-5">
-                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                </i>
-                                <input type="text" wire:model.live.debounce.1000ms="searchMarca"
-                                    class="form-control form-control-solid w-250px ps-13" placeholder="Marca" />
-                            </div>
-
-                            <!--end::Search-->
-                        </div>
-                        <!--begin::Card title-->
-                        <!--begin::Card toolbar-->
-                        <div class="card-toolbar">
-                            <!--begin::Toolbar-->
-                            <div class="d-flex justify-content-end">
-                                <div class="d-flex align-items-end position-relative my-1 m-5">
-                                    <div class="form-floating">
-                                        <select wire:model.live="convenioMarco" class="form-control" id="line_id"
-                                            aria-label="lineFilter">
-                                            <option selected>Selecione acuerdo marco</option>
-                                            @forelse ($this->acuerdosMarco as $acuerdoMarco)
-                                                <option value="{{ $acuerdoMarco->code }}">
-                                                    {{ $acuerdoMarco->name }}
-                                                </option>
-                                            @empty
-                                            @endforelse
-                                        </select>
-                                        <label for="lineFilter">Seleccione acuerdo marco</label>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center position-relative my-1 m-5">
-                                    <div class="form-floating">
-                                        <input wire:model.live='start_date' value="{{ $dateNow }}"
-                                            class="form-control form-control-solid w-150px ps-13 pt-13" type="date"
-                                            id="start_date" name="start_date" min="2021-01-01"
-                                            max="{{ $dateNow }}" />
-                                        <label for="lineFilter">Fecha fin</label>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center position-relative my-1 m-5">
-                                    <div class="form-floating">
-                                        <input wire:model.live='end_date'
-                                            class="form-control form-control-solid w-150px ps-13 pt-13" type="date"
-                                            id="end_date" name="end_date" min="2021-01-01" max="{{ $dateNow }}" />
-                                        <label for="lineFilter">Fecha fin</label>
-                                    </div>
-                                </div>
-
-                                <!--begin::Export-->
-                                <button type="button" class="btn btn-light-primary me-1">
-                                    <i class="ki-duotone ki-exit-up fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i></button>
-                                <!--end::Export-->
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Card toolbar-->
-                    </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
-                    <div class="card-body pt-0">
-                        @include('livewire.convenio.product-table')
-                    </div>
-                    <!--end::Card body-->
-                </div>
-                <!--end::Card-->
+        <!-- Card header -->
+        <div class="items-center justify-between lg:flex">
+            <div class="mb-4 lg:mb-0">
+                <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                    ORDENES DE COMPRA CONVENIO MARCO {{ $start_date }} - {{ $end_date }}
+                </h3>
+                <span class="text-base font-normal text-gray-500 dark:text-gray-400">
+                    Busqueda de Acuerdos marco
+                </span>
             </div>
-            <!--end::Content container-->
+            <div class="items-center sm:flex">
+                <div class="pr-3 flex items-center">
+                    <select wire:model.live="convenioMarco" id="countries"
+                        class=" space-x-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        @forelse ($this->acuerdosMarco as $acuerdoMarco)
+                            <option value="{{ $acuerdoMarco->code }}">
+                                {{ $acuerdoMarco->name }}
+                            </option>
+                        @empty
+                        @endforelse
+                    </select>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative max-w-sm">
+                        <input wire:model.live='start_date' type="date" type="text"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Desde">
+                    </div>
+                    <div class="relative max-w-sm">
+                        <input wire:model.live='end_date' type="date"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Hasta">
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--end::Content-->
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-2 dark:bg-gray-800">
+            <div class="items-center sm:flex">
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <x-text-input wire:model.live.debounce.1000ms='search' type='text' for='name'
+                            label='' placeholder='Entidad/Proveedor' />
+                    </div>
+                    <div class="relative">
+                        <x-text-input wire:model.live.debounce.1000ms='searchMarca' type='text' for='marca'
+                            label='' placeholder='Marca producto' />
+                    </div>
+                    <div class="relative">
+                        <x-text-input wire:model.live.debounce.1000ms='searchPartNumber' type='text' for='marca'
+                            label='' placeholder='Numero de Parte' />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Table -->
+        @include('livewire.convenio.product-table')
     </div>
 </div>
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+@endpush
