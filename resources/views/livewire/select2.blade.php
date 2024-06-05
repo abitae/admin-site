@@ -1,8 +1,8 @@
 <div>
-    <select wire:model="selectedOption" id="select23">
+    <select wire:model="selectedOption" id="select2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option value="">Seleccione una opción</option>
         @foreach ($options as $option)
-            <option value="{{ $option['value'] }}">{{ $option['label'] }}</option>
+            <option value="{{ $option->id }}">{{ $option->name }}</option>
         @endforeach
     </select>
 </div>
@@ -15,8 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#select23').select2();
-            $('#select23').on('change', function() {
+            $('#select2').select2();
+            $('#select2').on('change', function() {
                 @this.set('selectedOption', $(this).val());
             });
         });

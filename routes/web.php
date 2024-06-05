@@ -14,6 +14,7 @@ use App\Livewire\Almacen\BrandLive;
 use App\Livewire\Almacen\CategoryLive;
 use App\Livewire\Almacen\LineLive;
 use App\Livewire\Almacen\ProductLive;
+use App\Livewire\Crm\DetailNegocioLive;
 use App\Livewire\Crm\NegocioLive;
 use Illuminate\Support\Facades\Route;
 
@@ -52,5 +53,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/customers', CustomerLive::class)->name('crm.customers');
     Route::get('/contacts', ContactLive::class)->name('crm.contacts');
     Route::get('/negocios', NegocioLive::class)->name('crm.negocios');
+    Route::get('/detail/{id}', DetailNegocioLive::class)->name('crm.detail');
 });
 require __DIR__ . '/auth.php';

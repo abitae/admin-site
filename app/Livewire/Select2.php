@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Select2 extends Component
 {
@@ -11,7 +12,7 @@ class Select2 extends Component
 
     public function mount($options = [])
     {
-        $this->options = $options;
+        $this->options = Role::all();
     }
     public function render()
     {
