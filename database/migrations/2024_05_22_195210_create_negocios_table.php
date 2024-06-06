@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('priority');
             $table->float('monto_aprox',2);
             $table->string('stage');
+            $table->string('description');
             $table->boolean('isActive')->default(true);
             $table->timestamps();
         });

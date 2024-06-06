@@ -27,7 +27,8 @@ class NegocioFactory extends Factory
             'date_closing' => $this->faker->date('Y-m-d', 'now'),
             'priority' => $this->faker->randomElement(['ALTA', 'MEDIA', 'BAJA']),
             'monto_aprox' => $this->faker->randomFloat('2',0,2),
-            'stage' => $this->faker->randomElement(['ABIERTO', 'CERRADO']),
+            'stage' => $this->faker->randomElement(['ABIERTO', 'GANADO', 'PERDIDO']),
+            'description' => $this->faker->text(250),
             'isActive' => true,
         ];
     }

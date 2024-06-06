@@ -54,5 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/contacts', ContactLive::class)->name('crm.contacts');
     Route::get('/negocios', NegocioLive::class)->name('crm.negocios');
     Route::get('/detail/{id}', DetailNegocioLive::class)->name('crm.detail');
+    Route::get('/detail', DetailNegocioLive::class)->name('crm.detailnew');
 });
 require __DIR__ . '/auth.php';

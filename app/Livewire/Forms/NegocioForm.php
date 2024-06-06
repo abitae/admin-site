@@ -28,6 +28,8 @@ class NegocioForm extends Form
     public $monto_aprox = '';
     #[Validate('required')]
     public $stage = '';
+    #[Validate('required')]
+    public $description = '';
     public $isActive = false;
     public function setNegocio(Negocio $negocio)
     {
@@ -40,12 +42,12 @@ class NegocioForm extends Form
         $this->priority = $negocio->priority;
         $this->monto_aprox = $negocio->monto_aprox;
         $this->stage = $negocio->stage;
+        $this->description = $negocio->description;
     }
     public function store()
     {
-        $this->validate();
-
         try {
+            $this->validate();
             Negocio::create([
                 'customer_id' => $this->customer_id,
                 'employee_id' => $this->employee_id,
@@ -55,6 +57,7 @@ class NegocioForm extends Form
                 'priority' => $this->priority,
                 'monto_aprox' => $this->monto_aprox,
                 'stage' => $this->stage,
+                'description' => $this->description
             ]);
             infoLog('Negocio store', $this->code);
             return true;
@@ -65,6 +68,7 @@ class NegocioForm extends Form
     }
     public function update()
     {
+        //dd($this->description);
         try {
             $this->negocio->update([
                 'customer_id' => $this->customer_id,
@@ -75,6 +79,7 @@ class NegocioForm extends Form
                 'priority' => $this->priority,
                 'monto_aprox' => $this->monto_aprox,
                 'stage' => $this->stage,
+                'description' => $this->description
             ]);
             infoLog('Negocio update', $this->code);
             return true;

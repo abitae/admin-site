@@ -50,27 +50,19 @@ class NegocioLive extends Component
     }
     public function render()
     {
-        $options = [
-            ['value' => 1, 'label' => 'Opción 1'],
-            ['value' => 2, 'label' => 'Opción 2'],
-            ['value' => 3, 'label' => 'Opción 3'],
-        ];
-
-        return view('livewire.crm.negocio-live', compact('options'))->layout('components.layouts.app');;
+        return view('livewire.crm.negocio-live')->layout('components.layouts.app');
+        ;
     }
-    public function detail(Negocio $id){
+    public function detail(Negocio $id)
+    {
         return \Redirect::route('crm.detail', [$id]);
     }
+
     public function create()
     {
-        $this->negocioForm->reset();
-        $this->isOpenModal = true;
+        return \Redirect::route('crm.detailnew');
     }
-    public function update(Negocio $negocio)
-    {
-        $this->negocioForm->setNegocio($negocio);
-        $this->isOpenModal = true;
-    }
+
     public function delete(Negocio $negocio)
     {
         if ($this->negocioForm->destroy($negocio->id)) {
@@ -87,24 +79,7 @@ class NegocioLive extends Component
             $this->message('error', 'Error!', 'No se pudo actualizar el registro!');
         }
     }
-    public function createNegocio()
-    {
-        if ($this->negocioForm->store()) {
-            $this->message('success', 'En hora buena!', 'Registro creado correctamente!');
-            $this->isOpenModal = false;
-        } else {
-            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
-        }
-    }
-    public function updateNegocio()
-    {
-        if ($this->negocioForm->update()) {
-            $this->message('success', 'En hora buena!', 'Registro actualizado correctamente!');
-            $this->isOpenModal = false;
-        } else {
-            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
-        }
-    }
+
     public function exportNegocio()
     {
         $this->isOpenModalExport = false;

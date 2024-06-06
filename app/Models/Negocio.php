@@ -17,6 +17,7 @@ class Negocio extends Model
         'priority',
         'monto_aprox',
         'stage',
+        'description',
         'isActive',
     ];
     public function customer()
