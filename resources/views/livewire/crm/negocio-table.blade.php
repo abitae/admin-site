@@ -74,9 +74,19 @@
                                 </button>
                             </td>
                             <td class="p-4 space-x-2 whitespace-nowrap">
-                                <x-edit2-button wire:click='detail({{ $negocio->id }})'>
+                                <x-edit2-button wire:click='update({{ $negocio->id }})'>
                                 </x-edit2-button>
+                                <x-edit-button wire:click='detail({{ $negocio->id }})'>
+                                </x-edit-button>
                             </td>
+                        </tr>
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <td colspan="6">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5  dark:bg-gray-700">
+                                    <div class="bg-purple-600 h-2.5 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </td>
+
                         </tr>
                     @empty
                     @endforelse

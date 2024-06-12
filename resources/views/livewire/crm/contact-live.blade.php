@@ -211,7 +211,6 @@
                                     <x-primary-button type='submit'>
                                         Guardar
                                     </x-primary-button>
-                                    
                                 </div>
                             </form>
                         </x-modal>

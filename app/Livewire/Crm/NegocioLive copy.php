@@ -3,8 +3,6 @@
 namespace App\Livewire\Crm;
 
 use App\Livewire\Forms\NegocioForm;
-use App\Models\Customer;
-use App\Models\Employee;
 use App\Models\Negocio;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -25,7 +23,10 @@ class NegocioLive extends Component
     public $isOpenModal = false;
     public $isOpenModalExport = false;
     public $dateNow;
+
+
     public $selectedOption;
+
     protected $listeners = ['select2Changed' => 'handleSelect2Changed'];
 
     public function handleSelect2Changed($value)
@@ -45,14 +46,12 @@ class NegocioLive extends Component
             => $query->orWhere('code', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('name', 'LIKE', '%' . $this->search . '%')
         )
-            ->latest()
+        ->latest()
             ->paginate($this->num, '*', 'page');
     }
     public function render()
     {
-        $customers = Customer::all();
-        $employees = Employee::all();
-        return view('livewire.crm.negocio-live', compact('customers', 'employees'))->layout('components.layouts.app');
+        return view('livewire.crm.negocio-live')->layout('components.layouts.app');
         ;
     }
     public function detail(Negocio $id)
@@ -62,33 +61,7 @@ class NegocioLive extends Component
 
     public function create()
     {
-        $this->negocioForm->reset();
-        $this->isOpenModal = true;
-    }
-    public function createNegocio()
-    {
-
-        if ($this->negocioForm->store()) {
-            $this->message('success', 'En hora buena!', 'Registro creado correctamente!');
-            $this->isOpenModal = false;
-        } else {
-            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
-        }
-    }
-    public function update(Negocio $negocio)
-    {
-        $this->negocioForm->setNegocio($negocio);
-        $this->isOpenModal = true;
-    }
-    public function updateNegocio()
-    {
-        //dd($this->negocioForm->negocio);
-        if ($this->negocioForm->update()) {
-            $this->message('success', 'En hora buena!', 'Registro actualizado correctamente!');
-            $this->isOpenModal = false;
-        } else {
-            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
-        }
+        return \Redirect::route('crm.detailnew');
     }
 
     public function delete(Negocio $negocio)

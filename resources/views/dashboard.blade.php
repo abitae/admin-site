@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-
         <x-primary-button>
             Create
         </x-primary-button>

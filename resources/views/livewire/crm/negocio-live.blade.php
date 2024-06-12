@@ -107,7 +107,9 @@
                     <x-download-button>
                         Export
                     </x-download-button>
-
+                    <div >
+                        @include('livewire.crm.negocio-modal')
+                    </div>
                 </div>
             </div>
         </div>

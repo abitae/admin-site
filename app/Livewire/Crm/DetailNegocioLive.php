@@ -20,7 +20,6 @@ class DetailNegocioLive extends Component
         if (isset($id) ) {
             $this->negocioForm->setNegocio($id);
         }
-        
     }
     public function render()
     {
@@ -30,22 +29,13 @@ class DetailNegocioLive extends Component
     }
     public function updateNegocio()
     {
-        //dd($this->negocioForm->negocio);
         if ($this->negocioForm->update()) {
             $this->message('success', 'En hora buena!', 'Registro actualizado correctamente!');
         } else {
             $this->message('error', 'Error!', 'Verifique los datos ingresados!');
         }
     }
-    public function createNegocio()
-    {
-        //dd($this->negocioForm->negocio);
-        if ($this->negocioForm->store()) {
-            $this->message('success', 'En hora buena!', 'Registro actualizado correctamente!');
-        } else {
-            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
-        }
-    }
+
     public function updatedCustomer() {
         $this->negocioForm->customer_id = $this->customer;
     }
