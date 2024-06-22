@@ -2,22 +2,30 @@
 
 namespace App\Livewire\Crm;
 
+use App\Livewire\Forms\ActionForm;
 use App\Livewire\Forms\NegocioForm;
+use App\Models\ActionNegocio;
+use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Negocio;
+use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class DetailNegocioLive extends Component
 {
     use LivewireAlert;
+    use WithFileUploads;
     public NegocioForm $negocioForm;
+    public ActionForm $actionForm;
     public $customer;
     public $employee;
+    public $contact;
     public function mount(Negocio $id)
     {
-        if (isset($id) ) {
+        if (isset($id)) {
             $this->negocioForm->setNegocio($id);
         }
     }
@@ -25,7 +33,9 @@ class DetailNegocioLive extends Component
     {
         $customers = Customer::all();
         $employees = Employee::all();
-        return view('livewire.crm.detail-negocio-live', compact('customers', 'employees'));
+        $contacts = Contact::all();
+        $actions = ActionNegocio::where('negocio_id', $this->negocioForm->negocio->id)->latest()->get();
+        return view('livewire.crm.detail-negocio-live', compact('customers', 'employees', 'contacts', 'actions'));
     }
     public function updateNegocio()
     {
@@ -35,12 +45,36 @@ class DetailNegocioLive extends Component
             $this->message('error', 'Error!', 'Verifique los datos ingresados!');
         }
     }
-
-    public function updatedCustomer() {
+    public function createAction()
+    {
+        $this->actionForm->negocio_id = $this->negocioForm->negocio->id;
+        $this->actionForm->date = Carbon::now()->timezone('America/Lima');
+        if ($this->actionForm->store()) {
+            $this->message('success', 'En hora buena!', 'Registro creado correctamente!');
+            $this->actionForm->reset();
+        } else {
+            $this->message('error', 'Error!', 'Verifique los datos ingresados!');
+        }
+    }
+    public function delete(ActionNegocio $action)
+    {
+        if ($this->actionForm->destroy($action->id)) {
+            $this->message('success', 'En hora buena!', 'Registro eliminado correctamente!');
+        } else {
+            $this->message('error', 'Error!', 'No se pudo eliminar el registro!');
+        }
+    }
+    public function updatedCustomer()
+    {
         $this->negocioForm->customer_id = $this->customer;
     }
-    public function updatedEmployee() {
+    public function updatedEmployee()
+    {
         $this->negocioForm->employee_id = $this->employee;
+    }
+    public function updatedContact()
+    {
+        $this->actionForm->contact_id = $this->contact;
     }
     private function message($tipo, $tittle, $message)
     {

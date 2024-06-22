@@ -41,27 +41,6 @@ class ContactLive extends Component
                 ->orWhere('email', 'LIKE', '%' . $this->search . '%')
         )
             ->paginate($this->num, '*', 'page');
-        /* 
-           return Contact::query()
-            ->when($this->lineFilter, function ($query) {
-                $query->where('line_id', $this->lineFilter);
-            })
-            ->when($this->categoryFilter, function ($query) {
-                $query->where('category_id', $this->categoryFilter);
-            })
-            ->when($this->brandFilter, function ($query) {
-                $query->where('brand_id', $this->brandFilter);
-            })
-            ->when($this->search, function ($query) {
-                $query->where('code', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('code_fabrica', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('code_peru', 'LIKE', '%' . $this->search . '%');
-            })
-            ->when($this->stockFilter, function ($query) {
-                $query->where('stock', '>=', $this->stockFilter);
-            })
-            ->paginate($this->num, '*', 'page');
-            */
 
     }
     public function render()

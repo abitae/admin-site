@@ -103,6 +103,10 @@ class CustomerLive extends Component
             $this->message('error', 'Error!', 'Verifique los datos ingresados!');
         }
     }
+    public function buscarDocumento()
+    {
+       dd(buscar_documento_h('ruc','10436493903')['data']);
+    }
     public function updateCustomer()
     {
         if ($this->customerForm->update()) {

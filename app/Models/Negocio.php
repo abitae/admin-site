@@ -28,5 +28,9 @@ class Negocio extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+    public function actions()
+    {
+        return $this->hasMany(ActionNegocio::class);
+    }
 }
 

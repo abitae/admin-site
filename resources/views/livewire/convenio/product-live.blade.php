@@ -58,7 +58,7 @@
                 </span>
             </div>
             <div class="items-center sm:flex">
-                <div class="pr-3 flex items-center">
+                <div class="flex items-center pr-3">
                     <select wire:model.live="convenioMarco" id="countries"
                         class=" space-x-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @forelse ($this->acuerdosMarco as $acuerdoMarco)

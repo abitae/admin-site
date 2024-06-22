@@ -57,7 +57,7 @@ class ProductLive extends Component
         return view('livewire.convenio.product-live');
     }
     public function detail(ProductData $id){
-        return \Redirect::route('convenio.detail', [$id]);
+        return redirect()->route('convenio.detail', ['id' => $id]);
     }
     public function updatedConvenioMarco($value)
     {

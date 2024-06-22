@@ -70,9 +70,8 @@ class ProductForm extends Form
     }
     public function store()
     {
-        $this->validate();
-
         try {
+            $this->validate();
             if (gettype($this->image) != 'string') {
                 $this->image = $this->image->store('product/image');
             }

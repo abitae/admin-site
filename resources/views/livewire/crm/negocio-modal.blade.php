@@ -1,9 +1,9 @@
 @if ($isOpenModal)
     <x-modal title="{{ isset($negocioForm->negocio) ? 'Update negocio' : 'Create negocio' }}" maxWidth='3xl'>
         <form class="form" wire:submit='{{ isset($negocioForm->negocio) ? 'updateNegocio' : 'createNegocio' }}'>
-            <div class="p-4 md:p-5 space-y-4">
-                <div  class="grid grid-cols-6 gap-6">
-                    <div  class="col-span-3 sm:col-span-3">
+            <div class="p-4 space-y-4 md:p-5">
+                <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-3 sm:col-span-3">
                         <label for="customer_id">Cliente</label>
                         <select wire:model.live="negocioForm.customer_id" id="customer_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -75,7 +75,8 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <x-select-input wire:model.live='negocioForm.stage' for='stage' label='Estado'>
-                            <option value="ABIERTO">ABIERTO</option>
+                            <option value="NUEVO">NUEVO</option>
+                            <option value="COTIZADO">COTIZADO</option>
                             <option value="GANADO">GANADO</option>
                             <option value="PERDIDO">PERDIDO</option>
                         </x-select-input>
@@ -95,7 +96,7 @@
         </form>
     </x-modal>
 @endif
-myModal
+
 @push('js')
     <script>
         $(document).ready(function() {

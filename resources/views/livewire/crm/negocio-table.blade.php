@@ -28,11 +28,11 @@
                         </th>
                         <th scope="col"
                             class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                            Prioridad
+                            Estado
                         </th>
                         <th scope="col"
                             class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                            Estado
+                            Activo
                         </th>
                         <th scope="col"
                             class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -41,13 +41,40 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+
                     @forelse ($this->negocios as $negocio)
+                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <td colspan="8">
+                                <div class="w-full h-1 bg-gray-200 rounded-full dark:bg-gray-700">
+                                    @switch($negocio->stage)
+                                        @case('NUEVO')
+                                            <div class="h-1 bg-purple-600 rounded-full" style="width: 25%"></div>
+                                        @break
+
+                                        @case('GANADO')
+                                            <div class="h-1 bg-green-400 rounded-full" style="width: 100%"></div>
+                                        @break
+
+                                        @case('PERDIDO')
+                                            <div class="h-1 bg-red-500 rounded-full" style="width: 100%"></div>
+                                        @break
+
+                                        @case('COTIZADO')
+                                            <div class="h-1 bg-yellow-400 rounded-full" style="width: 50%"></div>
+                                        @break
+
+                                        @default
+                                    @endswitch
+
+                                </div>
+                            </td>
+                        </tr>
                         <tr wire:key='negocioo-{{ $negocio->id }}' class="hover:bg-gray-100 dark:hover:bg-gray-700">
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
                                 {{ $negocio->code }}
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                <p class="text-xs text-gray-700 text-hover-primary mb-1">
+                                <p class="mb-1 text-xs text-gray-700 text-hover-primary">
                                     <span>{{ $negocio->name }}</span>
                                 </p>
                             </td>
@@ -61,7 +88,7 @@
                                 {{ $negocio->date_closing }}
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                {{ $negocio->priority }}
+                                {{ $negocio->stage }}
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
                                 <button wire:click='estado({{ $negocio->id }})'
@@ -81,18 +108,36 @@
                             </td>
                         </tr>
                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td colspan="6">
-                                <div class="w-full bg-gray-200 rounded-full h-2.5  dark:bg-gray-700">
-                                    <div class="bg-purple-600 h-2.5 rounded-full" style="width: 75%"></div>
+                            <td colspan="8">
+                                <div class="w-full h-1 bg-gray-200 rounded-full dark:bg-gray-700">
+                                    @switch($negocio->stage)
+                                        @case('NUEVO')
+                                            <div class="h-1 bg-purple-600 rounded-full" style="width: 25%"></div>
+                                        @break
+
+                                        @case('GANADO')
+                                            <div class="h-1 bg-green-400 rounded-full" style="width: 100%"></div>
+                                        @break
+
+                                        @case('PERDIDO')
+                                            <div class="h-1 bg-red-500 rounded-full" style="width: 100%"></div>
+                                        @break
+
+                                        @case('COTIZADO')
+                                            <div class="h-1 bg-yellow-400 rounded-full" style="width: 50%"></div>
+                                        @break
+
+                                        @default
+                                    @endswitch
+
                                 </div>
                             </td>
-
                         </tr>
-                    @empty
-                    @endforelse
-                </tbody>
-            </table>
-            {{ $this->negocios->links(data: ['scrollTo' => false]) }}
+                        @empty
+                        @endforelse
+                    </tbody>
+                </table>
+                {{ $this->negocios->links(data: ['scrollTo' => false]) }}
+            </div>
         </div>
     </div>
-</div>

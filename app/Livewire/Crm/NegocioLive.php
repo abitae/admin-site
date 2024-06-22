@@ -22,6 +22,7 @@ class NegocioLive extends Component
     public NegocioForm $negocioForm;
     public $search = '';
     public $num = 10;
+    public $isActive = 1;
     public $isOpenModal = false;
     public $isOpenModalExport = false;
     public $dateNow;
@@ -39,12 +40,25 @@ class NegocioLive extends Component
     #[Computed]
     public function negocios()
     {
-
+        $search = $this->search;
         return Negocio::where(
-            fn($query)
-            => $query->orWhere('code', 'LIKE', '%' . $this->search . '%')
-                ->orWhere('name', 'LIKE', '%' . $this->search . '%')
-        )
+            fn ($query)
+            => $query->orWhereHas('customer', function ($query) use ($search) {
+                $query->where('code', 'like', '%' . $search . '%');
+            })
+                ->orWhereHas('customer', function ($query) use ($search) {
+                    $query->where('first_name', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('employee', function ($query) use ($search) {
+                    $query->where('code', 'like', '%' . $search . '%');
+                })
+                ->orWhereHas('employee', function ($query) use ($search) {
+                    $query->where('first_name', 'like', '%' . $search . '%');
+                })
+                ->orWhere('code', 'LIKE', '%' . $search . '%')
+                ->orWhere('name', 'LIKE', '%' . $search . '%')
+            )
+            ->where('isActive', $this->isActive)
             ->latest()
             ->paginate($this->num, '*', 'page');
     }
@@ -52,8 +66,7 @@ class NegocioLive extends Component
     {
         $customers = Customer::all();
         $employees = Employee::all();
-        return view('livewire.crm.negocio-live', compact('customers', 'employees'))->layout('components.layouts.app');
-        ;
+        return view('livewire.crm.negocio-live', compact('customers', 'employees'))->layout('components.layouts.app');;
     }
     public function detail(Negocio $id)
     {
@@ -127,5 +140,4 @@ class NegocioLive extends Component
             'timerProgressBar' => true,
         ]);
     }
-
 }

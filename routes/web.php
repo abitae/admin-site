@@ -37,12 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/roles', RolesLive::class)->name('config.roles');
     Route::get('/permissions/{id}', PermissionsLive::class)->name('config.permissions');
 });
-Route::middleware('auth')->group(function () {
-    Route::get('/acuerdos', AcuerdoMarcoLive::class)->name('convenio.acuerdos');
-    Route::get('/products-data', ProductCmLive::class)->name('convenio.data');
-    Route::get('/products-import', ImportProductLive::class)->name('convenio.import');
-    Route::get('/detail/{id}', DetailCmLive::class)->name('convenio.detail');
-});
+
 Route::middleware('auth')->group(function () {
     Route::get('/products', ProductLive::class)->name('almacen.products');
     Route::get('/brands', BrandLive::class)->name('almacen.brands');
@@ -50,10 +45,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories', CategoryLive::class)->name('almacen.categories');
 });
 Route::middleware('auth')->group(function () {
+    Route::get('/acuerdos', AcuerdoMarcoLive::class)->name('convenio.acuerdos');
+    Route::get('/products-data', ProductCmLive::class)->name('convenio.data');
+    Route::get('/products-import', ImportProductLive::class)->name('convenio.import');
+    Route::get('/detail/{id}', DetailCmLive::class)->name('convenio.detail');
+});
+Route::middleware('auth')->group(function () {
     Route::get('/customers', CustomerLive::class)->name('crm.customers');
     Route::get('/contacts', ContactLive::class)->name('crm.contacts');
     Route::get('/negocios', NegocioLive::class)->name('crm.negocios');
-    Route::get('/detail/{id}', DetailNegocioLive::class)->name('crm.detail');
-    Route::get('/detail', DetailNegocioLive::class)->name('crm.detailnew');
+    Route::get('/detailcrm/{id}', DetailNegocioLive::class)->name('crm.detail');
+    Route::get('/detailcrm', DetailNegocioLive::class)->name('crm.detailnew');
 });
 require __DIR__ . '/auth.php';

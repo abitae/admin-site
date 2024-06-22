@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ActionNegocio;
 use App\Models\AcuerdoMarco;
 use App\Models\Brand;
 use App\Models\Category;
@@ -55,6 +56,7 @@ class DatabaseSeeder extends Seeder
         Supplier::factory(10)->create();
         Contact::factory(100)->create();
         Negocio::factory(100)->create();
+        ActionNegocio::factory(1000)->create();
         //Brand::factory(10)->create();
         //Category::factory(10)->create();
         //Line::factory(10)->create();

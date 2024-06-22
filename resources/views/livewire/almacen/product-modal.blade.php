@@ -21,13 +21,13 @@
                 </div>
                 <!--end::Modal header-->
                 <!--begin::Modal body-->
-                <div class="modal-body scroll-y mx-5 mx-xl-5 my-1">
+                <div class="mx-5 my-1 modal-body scroll-y mx-xl-5">
                     <!--begin::Form-->
                     <form class="form" wire:submit="exportProduct">
                         <!--begin::Input group-->
-                        <div class="fv-row mb-2">
+                        <div class="mb-2 fv-row">
                             <!--begin::Label-->
-                            <label class="required fs-6 fw-semibold form-label mb-2">
+                            <label class="mb-2 required fs-6 fw-semibold form-label">
                                 Export Format:</label>
                             <!--end::Label-->
                             <!--begin::Input-->
@@ -47,7 +47,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="align-middle spinner-border spinner-border-sm ms-2"></span></span>
                             </button>
                         </div>
                         <!--end::Actions-->
@@ -89,13 +89,13 @@
                         </div>
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
-                        <div class="modal-body px-5 my-0">
+                        <div class="px-5 my-0 modal-body">
                             <!--begin::Form-->
                             <form class="form"
                                 wire:submit.prevent="{{ isset($productForm->product) ? 'updateProduct' : 'createProduct' }}">
                                 <!--begin::Scroll-->
-                                <div class="d-flex flex-column px-0 px-lg-5">
-                                    <div class="row mb-3">
+                                <div class="px-0 d-flex flex-column px-lg-5">
+                                    <div class="mb-3 row">
                                         <div class="col-4">
                                             <div class="form-floating">
                                                 <select wire:model.live="productForm.line_id"
@@ -146,7 +146,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="mb-3 row">
                                         <div class="col-4">
                                             <div
                                                 class="form-floating {{ $errors->has('productForm.code') ? 'is-invalid' : '' }}">
@@ -194,7 +194,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="mb-3 row">
                                         <div class="col-4">
                                             <div class="input-group has-validation">
                                                 <div
@@ -249,7 +249,7 @@
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Input group-->
-                                    <div class="row mb-3">
+                                    <div class="mb-3 row">
                                         <div class="col-4">
                                             <div class="input-group has-validation">
                                                 <div
@@ -302,7 +302,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="mb-3 row">
                                         <div class="col-6">
                                             <div class="input-group has-validation">
                                                 <div
@@ -334,14 +334,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="mb-3 row">
                                         <div class="col-6">
                                             <div class="input-group has-validation">
                                                 <div
                                                     class="form-floating {{ $errors->has('productForm.image') ? 'is-invalid' : '' }}">
                                                     <input wire:model.live='productForm.image' type="file"
                                                         class="form-control {{ $errors->has('productForm.image') ? 'is-invalid' : '' }}"
-                                                        id="image"></input>
+                                                        id="image">
                                                     <label for="image">Imagen</label>
                                                 </div>
                                                 @error('productForm.image')
@@ -357,7 +357,7 @@
                                                     class="form-floating {{ $errors->has('productForm.archivo') ? 'is-invalid' : '' }}">
                                                     <input wire:model.live='productForm.archivo' type="file"
                                                         class="form-control {{ $errors->has('productForm.archivo') ? 'is-invalid' : '' }}"
-                                                        id="archivo"></input>
+                                                        id="archivo">
                                                     <label for="archivo">Especificaciones</label>
                                                 </div>
                                                 @error('productForm.archivo')
@@ -370,14 +370,14 @@
                                     </div>
                                 </div>
                                 <!--begin::Actions-->
-                                <div class="text-end pt-2">
+                                <div class="pt-2 text-end">
                                     <button wire:click="$toggle('isOpenModal')" type="reset"
                                         class="btn btn-light me-3">Cancelar</button>
                                     <button class="btn btn-primary">
                                         <span class="indicator-label">Guardar</span>
                                         <span class="indicator-progress">Please wait...
                                             <span
-                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                class="align-middle spinner-border spinner-border-sm ms-2"></span></span>
                                     </button>
                                 </div>
                                 <!--end::Actions-->

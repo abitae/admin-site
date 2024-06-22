@@ -39,8 +39,8 @@
                                 {{ $customer->type_code }}: {{ $customer->code }}
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                <p class="text-xs text-gray-700 text-hover-primary mb-1">
-                                    <span>{{ $customer->first_name }} {{ $customer->last_name }}</span>
+                                <p class="mb-1 text-xs text-gray-700 text-hover-primary">
+                                    <span>{{ $customer->first_name }}</span>
                                 </p>
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">

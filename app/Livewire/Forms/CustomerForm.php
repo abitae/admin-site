@@ -19,7 +19,7 @@ class CustomerForm extends Form
     #[Validate('required')]
     public $first_name = '';
     #[Validate('required')]
-    public $last_name = '';
+    public $last_name = 'last_name';
     #[Validate('required')]
     public $date_brinday = '';
     #[Validate('required')]
