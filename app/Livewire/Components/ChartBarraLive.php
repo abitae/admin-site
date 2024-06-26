@@ -10,8 +10,7 @@ use Livewire\Component;
 class ChartBarraLive extends Component
 {
     public function render()
-    {   
-
+    {       
         $series = [           
             $this->serieChart("Abierto",'#9B0EEA','ABIERTO'),
             $this->serieChart("Perdido",'#FF0000','PERDIDO'),

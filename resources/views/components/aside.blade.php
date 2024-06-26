@@ -206,7 +206,6 @@
                     </li>
 
                 </ul>
-
             </div>
         </div>
         <div class="absolute bottom-0 left-0 justify-center hidden w-full p-4 space-x-4 bg-white lg:flex dark:bg-gray-800"
