@@ -10,7 +10,7 @@ class Negocio extends Model
     use HasFactory;
     protected $fillable = [
         'customer_id',
-        'employee_id',
+        'user_id',
         'code',
         'name',
         'date_closing',
@@ -24,9 +24,9 @@ class Negocio extends Model
     {
         return $this->belongsTo(Customer::class);
     }
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(User::class);
     }
     public function actions()
     {

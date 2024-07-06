@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('negocios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers');
-            $table->foreignId('employee_id')->constrained('employees');            
+            $table->foreignId('user_id')->constrained('users');            
             $table->string('code')->unique();
             $table->string('name');
             $table->date('date_closing')->nullable();

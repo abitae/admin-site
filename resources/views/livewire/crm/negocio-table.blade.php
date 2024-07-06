@@ -82,7 +82,7 @@
                                 {{ $negocio->customer->first_name }}
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                {{ $negocio->employee->first_name }}
+                                {{ $negocio->user->name }}
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
                                 {{ $negocio->date_closing }}

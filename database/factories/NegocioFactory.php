@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Customer;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,7 @@ class NegocioFactory extends Factory
 
         return [
             'customer_id' => $this->faker->randomElement(Customer::pluck('id')->toArray()),
-            'employee_id' => $this->faker->randomElement(Employee::pluck('id')->toArray()),
+            'user_id' => $this->faker->randomElement(User::pluck('id')->toArray()),
             'code' => $this->faker->randomNumber(8, false),
             'name' => $this->faker->name(),
             'date_closing' => $this->faker->date('Y-m-d', 'now'),

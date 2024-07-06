@@ -6,6 +6,7 @@ use App\Livewire\Forms\NegocioForm;
 use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Negocio;
+use App\Models\User;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Computed;
@@ -49,11 +50,11 @@ class NegocioLive extends Component
                 ->orWhereHas('customer', function ($query) use ($search) {
                     $query->where('first_name', 'like', '%' . $search . '%');
                 })
-                ->orWhereHas('employee', function ($query) use ($search) {
-                    $query->where('code', 'like', '%' . $search . '%');
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
                 })
-                ->orWhereHas('employee', function ($query) use ($search) {
-                    $query->where('first_name', 'like', '%' . $search . '%');
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('email', 'like', '%' . $search . '%');
                 })
                 ->orWhere('code', 'LIKE', '%' . $search . '%')
                 ->orWhere('name', 'LIKE', '%' . $search . '%')
@@ -65,8 +66,8 @@ class NegocioLive extends Component
     public function render()
     {
         $customers = Customer::all();
-        $employees = Employee::all();
-        return view('livewire.crm.negocio-live', compact('customers', 'employees'))->layout('components.layouts.app');;
+        $users = User::all();
+        return view('livewire.crm.negocio-live', compact('customers', 'users'))->layout('components.layouts.app');;
     }
     public function detail(Negocio $id)
     {

@@ -19,8 +19,22 @@ class PermissionsLive extends Component
     }
     public function render()
     {
-        $user_p = Permission::where('name', 'LIKE', '%' . 'usuarios' . '%')->pluck('name');
-        return view('livewire.config.permissions-live', compact('user_p'))->layout('components.layouts.app');
+        $user_p = Permission::where('name', 'LIKE', '%' . 'usuario' . '%')->pluck('name');
+        $role_p = Permission::where('name', 'LIKE', '%' . 'rol' . '%')->pluck('name');
+        $cm_p = Permission::where('name', 'LIKE', '%' . 'CM' . '%')->pluck('name');
+        $acuerdo_p = Permission::where('name', 'LIKE', '%' . 'acuerdo' . '%')->pluck('name');
+        $negocio_p = Permission::where('name', 'LIKE', '%' . 'negocio' . '%')->pluck('name');
+        $cliente_p = Permission::where('name', 'LIKE', '%' . 'cliente' . '%')->pluck('name');
+        $contacto_p = Permission::where('name', 'LIKE', '%' . 'contacto' . '%')->pluck('name');
+        $producto_p = Permission::where('name', 'LIKE', '%' . 'producto' . '%')->pluck('name');
+        $marca_p = Permission::where('name', 'LIKE', '%' . 'marca' . '%')->pluck('name');
+        $categoria_p = Permission::where('name', 'LIKE', '%' . 'categoria' . '%')->pluck('name');
+        $linea_p = Permission::where('name', 'LIKE', '%' . 'linea' . '%')->pluck('name');
+        return view(
+            'livewire.config.permissions-live',
+            compact('user_p', 'role_p', 'cm_p', 'acuerdo_p', 'negocio_p', 'cliente_p', 'contacto_p', 'producto_p','marca_p', 'categoria_p', 'linea_p')
+        )
+            ->layout('components.layouts.app');
 
     }
     public function update()

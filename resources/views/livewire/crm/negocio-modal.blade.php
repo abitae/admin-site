@@ -23,10 +23,9 @@
                         <label for="employee_id">Encargado</label>
                         <select wire:model.live="negocioForm.employee_id" id="employee_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            @forelse ($employees as $employee)
-                                <option value="{{ $employee->id }}">{{ $employee->id }}
-                                    {{ $employee->first_name }}
-                                    {{ $employee->last_name }}</option>
+                            @forelse ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->id }}
+                                    {{ $user->name }}</option>
                             @empty
                             @endforelse
                         </select>

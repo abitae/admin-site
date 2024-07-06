@@ -151,7 +151,7 @@
                                 Name
                             </th>
                             <th scope="col"
-                                class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                class="p-4 text-xs font-medium tracking-wider  text-left text-gray-500 uppercase dark:text-gray-400">
                                 Permisos
                             </th>
                             <th scope="col"
@@ -172,7 +172,7 @@
 
                                     </div>
                                 </td>
-                                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td class="p-4 text-base font-medium text-gray-900 w-full dark:text-white">
                                     @forelse ($role->permissions as $permission)
                                         <span
                                             class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500">

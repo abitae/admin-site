@@ -21,6 +21,10 @@ class UsersLive extends Component
     public $isOpenModal = false;
     public $isOpenModalExport = false;
     public $name;
+    public function mount()
+    {
+        $this->authorize('Ver usuario');
+    }
     #[Computed]
     public function users()
     {
@@ -35,11 +39,13 @@ class UsersLive extends Component
     }
     public function create()
     {
+        $this->authorize('Crear usuario');
         $this->userForm->reset();
         $this->isOpenModal = true;
     }
     public function update(User $user)
     {
+        $this->authorize('Editar usuario');
         $this->userForm->reset();
         $this->userForm->setUser($user);
         $this->isOpenModal = true;
@@ -47,6 +53,7 @@ class UsersLive extends Component
     }
     public function delete(User $user)
     {
+        $this->authorize('Eliminar usuario');
         if ($this->userForm->destroy($user->id)) {
             $this->message('success', 'En hora buena!', 'Registro eliminado correctamente!');
         } else {

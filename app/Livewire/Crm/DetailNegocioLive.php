@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Employee;
 use App\Models\Negocio;
+use App\Models\User;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -21,7 +22,7 @@ class DetailNegocioLive extends Component
     public NegocioForm $negocioForm;
     public ActionForm $actionForm;
     public $customer;
-    public $employee;
+    public $user;
     public $contact;
     public function mount(Negocio $id)
     {
@@ -32,10 +33,10 @@ class DetailNegocioLive extends Component
     public function render()
     {
         $customers = Customer::all();
-        $employees = Employee::all();
+        $users = User::all();
         $contacts = Contact::all();
         $actions = ActionNegocio::where('negocio_id', $this->negocioForm->negocio->id)->latest()->get();
-        return view('livewire.crm.detail-negocio-live', compact('customers', 'employees', 'contacts', 'actions'));
+        return view('livewire.crm.detail-negocio-live', compact('customers', 'users', 'contacts', 'actions'));
     }
     public function updateNegocio()
     {
@@ -68,9 +69,9 @@ class DetailNegocioLive extends Component
     {
         $this->negocioForm->customer_id = $this->customer;
     }
-    public function updatedEmployee()
+    public function updatedUser()
     {
-        $this->negocioForm->employee_id = $this->employee;
+        $this->negocioForm->user_id = $this->user;
     }
     public function updatedContact()
     {
@@ -81,7 +82,7 @@ class DetailNegocioLive extends Component
         $this->alert($tipo, $tittle, [
             'position' => 'top-end',
             'timer' => 3000,
-            'toast' => false,
+            'toast' => true,
             'text' => $message,
             'timerProgressBar' => true,
         ]);

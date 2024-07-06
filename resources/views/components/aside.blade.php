@@ -1,5 +1,5 @@
-<aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+<aside id="sidebar"
+    class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
@@ -36,8 +36,6 @@
                             </span>
                         </a>
                     </li>
-
-
                     <li>
                         <button type="button"
                             class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
@@ -190,18 +188,24 @@
                             </svg>
                         </button>
                         <ul id="dropdown-config" class="hidden py-2 space-y-2 ">
+                            @can('Ver usuario')
                             <li>
                                 <a href="{{ route('config.users') }}"
                                     class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 ">
                                     Users
                                 </a>
                             </li>
+                            @endcan
+                            
+                            @can('Ver rol')
                             <li>
                                 <a href="{{ route('config.roles') }}"
                                     class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 ">
                                     Roles
                                 </a>
                             </li>
+                            @endcan
+                            
                         </ul>
                     </li>
 

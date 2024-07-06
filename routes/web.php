@@ -37,7 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/roles', RolesLive::class)->name('config.roles');
     Route::get('/permissions/{id}', PermissionsLive::class)->name('config.permissions');
 });
-
+Route::middleware('auth',)->group(function () {
+    Route::get('/users', UsersLive::class)->name('config.users');
+    Route::get('/roles', RolesLive::class)->name('config.roles');
+    Route::get('/permissions/{id}', PermissionsLive::class)->name('config.permissions');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/products', ProductLive::class)->name('almacen.products');
     Route::get('/brands', BrandLive::class)->name('almacen.brands');

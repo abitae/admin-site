@@ -15,7 +15,7 @@ class NegocioForm extends Form
     #[Validate('required|min:1')]
     public $customer_id = '';
     #[Validate('required|min:1')]
-    public $employee_id = '';
+    public $user_id = '';
     #[Validate('required|unique:negocios')]
     public $code = '';
     #[Validate('required')]
@@ -35,7 +35,7 @@ class NegocioForm extends Form
     {
         $this->negocio = $negocio;
         $this->customer_id = $negocio->customer_id;
-        $this->employee_id = $negocio->employee_id;
+        $this->user_id = $negocio->user_id;
         $this->code = $negocio->code;
         $this->name = $negocio->name;
         $this->date_closing = $negocio->date_closing;
@@ -50,7 +50,7 @@ class NegocioForm extends Form
             $this->validate();
             Negocio::create([
                 'customer_id' => $this->customer_id,
-                'employee_id' => $this->employee_id,
+                'user_id' => $this->user_id,
                 'code' => $this->code,
                 'name' => $this->name,
                 'date_closing' => $this->date_closing,
@@ -72,7 +72,7 @@ class NegocioForm extends Form
         try {
             $this->negocio->update([
                 'customer_id' => $this->customer_id,
-                'employee_id' => $this->employee_id,
+                'user_id' => $this->user_id,
                 'code' => $this->code,
                 'name' => $this->name,
                 'date_closing' => $this->date_closing,
