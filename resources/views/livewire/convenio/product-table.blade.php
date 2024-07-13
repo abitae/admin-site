@@ -19,10 +19,6 @@
                             </th>
                             <th scope="col"
                                 class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                PROCEDIMIENTO
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
                                 FECHA
                             </th>
                             <th scope="col"
@@ -41,7 +37,7 @@
                     </thead>
                     <tbody class="bg-white dark:bg-gray-800">
                         @forelse ($this->datas as $data)
-                            <tr  wire:key='product-{{ $data->id }}'>
+                            <tr wire:key='product-{{ $data->id }}'>
                                 <td class="p-4 min-w-full text-xs font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ substr($data->orden_electronica, 0, -1) . str_repeat('0', 1) }}
                                     <br>
@@ -59,26 +55,21 @@
                                     {{ $data->razon_entidad }}
 
                                 </td>
-                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                    {{ $data->procedimiento }}
-                                    <br>
-                                    {{ $data->tipo }}
-                                </td>
-                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
+                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
                                     <span
                                         class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500">
                                         {{ \Carbon\Carbon::parse($data->fecha_aceptacion)->format('d/m/Y') }}
                                     </span>
                                 </td>
-                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400 ">
+                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-white ">
                                     {{ $data->numero_parte }}
                                     <br>
                                     {{ $data->marca_ficha_producto }}
                                 </td>
-                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400 ">
+                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
                                     {{ $data->estado_orden_electronica }}
                                 </td>
-                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400 ">
+                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
                                     <x-edit2-button wire:click='detail({{ $data->id }})'>
                                     </x-edit2-button>
                                 </td>

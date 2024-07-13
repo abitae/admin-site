@@ -9,7 +9,6 @@ export default {
         './resources/views/**/*.blade.php',
         "./node_modules/flowbite/**/*.js"
     ],
-
     theme: {
         extend: {
             fontFamily: {
@@ -44,7 +43,6 @@ export default {
             }
           },
     },
-
     plugins: [
         forms,
         require('flowbite/plugin')

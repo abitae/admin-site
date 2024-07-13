@@ -156,7 +156,7 @@ class ProductLive extends Component
         $this->alert($tipo, $tittle, [
             'position' => 'top-end',
             'timer' => 3000,
-            'toast' => false,
+            'toast' => true,
             'text' => $message,
             'timerProgressBar' => true,
         ]);

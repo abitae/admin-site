@@ -1,74 +1,63 @@
-<!--begin::Table-->
-<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_acuerdoMarcos">
-    <thead>
-        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-            <th class="min-w-125px">Code</th>
-            <th class="min-w-125px">Name</th>
-            <th class="min-w-125px">Estado</th>
-            <th class="text-end min-w-100px">Actions</th>
-        </tr>
-    </thead>
-    <tbody class="text-gray-600 fw-semibold">
-        @forelse ($this->acuerdoMarcos as $acuerdoMarco)
-            <tr wire:key='acuerdoMarco{{ $acuerdoMarco->id }}'>
-                <td class="d-flex align-items-center">
-                    <!--begin:: Avatar -->
-                    <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                        <div class="symbol-label fs-3 bg-light-info text-info">
-                            A
-                        </div>
-                    </div>
-                    <!--end::Avatar-->
-                    <!--begin::AcuerdoMarco details-->
-                    <div class="d-flex flex-column">
-                        <p class="text-gray-800 text-hover-primary mb-1">
-                            {{ $acuerdoMarco->code }}
-                        </p>
+<div class="flex flex-col mt-6">
+    <div class="overflow-x-auto rounded-lg">
+        <div class="inline-block min-w-full align-middle">
+            <div class="overflow-hidden shadow sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th scope="col"
+                                class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                CODE
+                            </th>
+                            <th scope="col"
+                                class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                NAME
+                            </th>
+                            <th scope="col"
+                                class="p-4 text-xs font-medium  text-left text-gray-500 uppercase dark:text-white">
+                                ESTADO
+                            </th>
+                            <th scope="col"
+                                class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                ACCION
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-800">
+                        @forelse ($this->acuerdoMarcos as $data)
+                            <tr wire:key='acuerdoMarco-{{ $data->id }}'>
+                                <td class="p-4 text-base font-normal text-gray-500 dark:text-gray-400">
 
-                    </div>
-                    <!--begin::AcuerdoMarco details-->
-                </td>
-                <td>
-                    <div class="badge badge-light fw-bold">
-                        <span>{{ $acuerdoMarco->name }}</span>
-                    </div>
-                </td>
-                <td>
-                    <button wire:click='estado({{ $acuerdoMarco->id }})'
-                        wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba 'SI' para confirmar!|SI">
-                        <div class="badge badge-light-{{ $acuerdoMarco->isActive ? 'success' : 'danger' }} fw-bold">
-                            {{ $acuerdoMarco->isActive ? 'Enabled' : 'Disabled' }}
-                        </div>
-                    </button>
-                </td>
+                                    {{ $data->code }}
 
-                <td class="text-end">
-                    <button wire:click='update({{ $acuerdoMarco->id }})'
-                        class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
-                        <i class="ki-duotone ki-setting-3 fs-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                            <span class="path3"></span>
-                            <span class="path4"></span>
-                            <span class="path5"></span>
-                        </i>
-                    </button>
-                    <button wire:click='delete({{ $acuerdoMarco->id }})'
-                        wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $acuerdoMarco->name }}' para confirmar!|{{ $acuerdoMarco->name }}"
-                        class="btn btn-icon btn-active-light-primary w-30px h-30px">
-                        <i class="ki-duotone ki-trash fs-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                            <span class="path3"></span>
-                            <span class="path4"></span>
-                            <span class="path5"></span>
-                        </i>
-                    </button>
-                </td>
-            </tr>
-        @empty
-        @endforelse
-    </tbody>
-</table>
-<!--end::Table-->
-{{ $this->acuerdoMarcos->links(data: ['scrollTo' => false]) }}
+                                </td>
+                                <td class="p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                                    {{ $data->name }}
+                                </td>
+                                <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                    <button wire:click='estado({{ $data->id }})'
+                                        wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba 'SI' para confirmar!|SI"
+                                        class="flex items-center">
+                                        <div
+                                            class="h-2.5 w-2.5 rounded-full {{ $data->isActive ? 'bg-green-400' : 'bg-red-600' }} mr-2">
+                                        </div>
+                                        {{ $data->isActive ? 'Active' : 'Disabled' }}
+                                    </button>
+                                </td>
+                                <td class="p-4 space-x-2 whitespace-nowrap">
+                                    <x-edit-button wire:click='update({{ $data->id }})'>
+                                    </x-edit-button>
+                                    <x-delete-button wire:click='delete({{ $data->id }})'
+                                        wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $data->code }}' para confirmar!|{{ $data->code }}">
+                                    </x-delete-button>
+                                </td>
+                            </tr>
+                        @empty
+                        @endforelse
+                    </tbody>
+                </table>
+                {{ $this->acuerdoMarcos->links(data: ['scrollTo' => false]) }}
+            </div>
+        </div>
+    </div>
+</div>

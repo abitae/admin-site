@@ -15,14 +15,14 @@ $maxWidth = [
     '5xl' => 'sm:max-w-5xl',
 ][$maxWidth];
 @endphp
-<div id='myModal' role="dialog" tabindex="-1" aria-hidden="true"
-    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full flex">
+<div id='myModal'
+    class="overflow-y-auto overflow-x-hidden  fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full flex">
     <div class="relative p-4 sm:w-full {{ $maxWidth }} sm:mx-auto">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            <div class="flex items-center justify-between p-2 md:p-2 border-b rounded-lg border-gray-200 dark:border-gray-600">
+                <h3 class="text-md font-semibold text-gray-900 dark:text-white">
                     {{ isset($title)  ? $title : 'Titulo' }}
                 </h3>
                 <button wire:click="$toggle('isOpenModal')" type="button"

@@ -70,6 +70,7 @@ class ProductForm extends Form
     }
     public function store()
     {
+        
         try {
             $this->validate();
             if (gettype($this->image) != 'string') {
@@ -139,7 +140,6 @@ class ProductForm extends Form
                 'archivo' => $this->archivo,
             ]);
             infoLog('Product update', $this->code);
-            Storage::delete('public/tmp');
             return true;
         } catch (\Exception $e) {
             errorLog('Product update', $e);

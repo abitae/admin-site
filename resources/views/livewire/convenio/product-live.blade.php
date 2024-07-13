@@ -1,6 +1,5 @@
 <div>
-    <div
-        class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+    <div class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         <div class="w-full mb-1">
             <div class="mb-4">
                 <nav class="flex mb-5" aria-label="Breadcrumb">
@@ -26,22 +25,21 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Config
+                                    Convenio Marco
                                 </span>
                             </div>
                         </li>
                         <li>
-                            <div class="flex items-center">
+                            <a href="{{route('convenio.data')}}"
+                                class="flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
                                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Users
-                                </span>
-                            </div>
+                                Ordenes
+                            </a>
                         </li>
                     </ol>
                 </nav>
@@ -59,8 +57,8 @@
             </div>
             <div class="items-center sm:flex">
                 <div class="flex items-center pr-3">
-                    <select wire:model.live="convenioMarco" id="countries"
-                        class=" space-x-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select wire:model.live="convenioMarco" id="convenioMarco"
+                        class="space-x-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @forelse ($this->acuerdosMarco as $acuerdoMarco)
                             <option value="{{ $acuerdoMarco->code }}">
                                 {{ $acuerdoMarco->name }}
@@ -83,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-2 dark:bg-gray-800">
+        <div class="bg-white shadow-sm  sm:p-2 dark:bg-gray-800">
             <div class="items-center sm:flex">
                 <div class="flex items-center space-x-4">
                     <div class="relative">
@@ -105,6 +103,3 @@
         @include('livewire.convenio.product-table')
     </div>
 </div>
-@push('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-@endpush

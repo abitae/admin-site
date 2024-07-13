@@ -15,8 +15,7 @@ class ProductLive extends Component
     use WithPagination, WithoutUrlPagination;
     public $search = '';
     public $num = 10;
-    public $convenioMarco = '';
-    public $catalogoMarco;
+    public $convenioMarco;
     public $searchMarca;
     public $searchPartNumber;
     public $start_date;
@@ -27,6 +26,7 @@ class ProductLive extends Component
     {
         $this->start_date = Carbon::now('GMT-5')->startOfDay()->format('Y-m-d');
         $this->end_date = Carbon::now('GMT-5')->endOfDay()->format('Y-m-d');
+        $this->convenioMarco = AcuerdoMarco::first()->code;
     }
     #[Computed]
     public function acuerdosMarco()

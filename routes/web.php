@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/lines', LineLive::class)->name('almacen.lines');
     Route::get('/categories', CategoryLive::class)->name('almacen.categories');
 });
+//Acuerdo Marco
 Route::middleware('auth')->group(function () {
     Route::get('/acuerdos', AcuerdoMarcoLive::class)->name('convenio.acuerdos');
     Route::get('/products-data', ProductCmLive::class)->name('convenio.data');
