@@ -104,7 +104,7 @@
                     <x-upload-button>
                         Import
                     </x-upload-button>
-                    <x-download-button>
+                    <x-download-button wire:click="export">
                         Export
                     </x-download-button>
                     @include('livewire.almacen.product-modal')

@@ -7,12 +7,14 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Line;
 use App\Models\Product;
+use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
-use Livewire\WithFileUploads;
+use PDF;
 
 class ProductLive extends Component
 {
@@ -33,35 +35,22 @@ class ProductLive extends Component
     #[Computed]
     public function brands()
     {
-        return Brand::where('isActive',true)->get();
+        return Brand::where('isActive', true)->get();
     }
     #[Computed]
     public function categories()
     {
-        return Category::where('isActive',true)->get();
+        return Category::where('isActive', true)->get();
     }
     #[Computed]
     public function lines()
     {
-        return Line::where('isActive',true)->get();
+        return Line::where('isActive', true)->get();
     }
     #[Computed]
     public function products()
     {
-        /* 
-        return Product::where('line_id', $this->lineFilter)
-            ->where('category_id', $this->categoryFilter)
-            ->where('brand_id', $this->brandFilter)
-            //->where('stock', '>=', $this->stockFilter)
-            ->where(
-                fn($query)
-                => $query->orWhere('code', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('code_fabrica', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('code_peru', 'LIKE', '%' . $this->search . '%')
-            )
-            ->paginate($this->num, '*', 'page');
-        */
-           return Product::query()
+        return Product::query()
             ->when($this->lineFilter, function ($query) {
                 $query->where('line_id', $this->lineFilter);
             })
@@ -80,7 +69,6 @@ class ProductLive extends Component
                 $query->where('stock', '>=', $this->stockFilter);
             })
             ->paginate($this->num, '*', 'page');
-        
     }
     public function render()
     {
@@ -161,5 +149,17 @@ class ProductLive extends Component
             'timerProgressBar' => true,
         ]);
     }
-
+    public function export()
+    {
+        $users = User::all();
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+            ->setPaper('a4', 'portrait')
+            ->loadView('livewire.almacen.report.cotizacion')
+            ->output();
+        return response()
+            ->streamDownload(
+                fn() => print($pdf),
+                "sucamm.pdf"
+            );
+    }
 }

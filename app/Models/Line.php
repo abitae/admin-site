@@ -17,4 +17,8 @@ class Line extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public function cotizaciones()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
 }

@@ -38,4 +38,8 @@ class Product extends Model
     public function line(){
         return $this->belongsTo(Line::class);
     }
+    public function cotizaciondetalles()
+    {
+        return $this->hasMany(CotizacionDetalle::class);
+    }
 }

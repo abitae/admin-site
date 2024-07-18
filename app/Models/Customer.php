@@ -23,6 +23,10 @@ class Customer extends Model
     {
         return $this->hasMany(Negocio::class);
     }
+    public function cotizaciones()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
     public function orders()
     {
         //return $this->hasMany(Order::class);

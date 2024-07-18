@@ -1,0 +1,212 @@
+{
+    "personaId": "669718aa5b91f0001543aeec",
+    "personaToken": "DEV_... ---> aquí va tu 'personaToken'",
+    "fileName": "10436493903-31-V001-00000002",
+    "documentBody": {
+        "cbc:UBLVersionID": {
+            "_text": "2.1"
+        },
+        "cbc:CustomizationID": {
+            "_text": "2.0"
+        },
+        "cbc:ID": {
+            "_text": "V001-00000002"
+        },
+        "cbc:IssueDate": {
+            "_text": "2024-07-17"
+        },
+        "cbc:IssueTime": {
+            "_text": "09:44:24"
+        },
+        "cbc:DespatchAdviceTypeCode": {
+            "_text": "31"
+        },
+        "cac:DespatchSupplierParty": {
+            "cac:Party": {
+                "cac:PartyIdentification": {
+                    "cbc:ID": {
+                        "_attributes": {
+                            "schemeID": "6"
+                        },
+                        "_text": "10436493903"
+                    }
+                },
+                "cac:PartyName": {
+                    "cbc:Name": {
+                        "_text": "Global Solutions"
+                    }
+                },
+                "cac:PartyLegalEntity": {
+                    "cbc:RegistrationName": {
+                        "_text": "ARANA CORTEZ ABEL CARLOS"
+                    },
+                    "cac:RegistrationAddress": {
+                        "cac:AddressLine": {
+                            "cbc:Line": {
+                                "_text": "CAL. REAL NRO. 261 INT. 3N07 HUANCAYO HUANCAYO JUNIN"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "cac:DeliveryCustomerParty": {
+            "cac:Party": {
+                "cac:PartyIdentification": {
+                    "cbc:ID": {
+                        "_attributes": {
+                            "schemeID": "1"
+                        },
+                        "_text": "43649390"
+                    }
+                },
+                "cac:PartyLegalEntity": {
+                    "cbc:RegistrationName": {
+                        "_text": "ABEL CARLOS ARANA CORTEZ"
+                    }
+                }
+            }
+        },
+        "cac:Shipment": {
+            "cbc:ID": {
+                "_text": "SUNAT_Envio"
+            },
+            "cbc:GrossWeightMeasure": {
+                "_attributes": {
+                    "unitCode": "KGM"
+                },
+                "_text": 1
+            },
+            "cac:ShipmentStage": {
+                "cac:TransitPeriod": {
+                    "cbc:StartDate": {
+                        "_text": "2024-07-17"
+                    }
+                },
+                "cac:CarrierParty": {
+                    "cac:PartyIdentification": {
+                        "cbc:ID": {
+                            "_attributes": {
+                                "schemeID": "6"
+                            }
+                        }
+                    }
+                },
+                "cac:DriverPerson": [
+                    {
+                        "cbc:ID": {
+                            "_attributes": {
+                                "schemeID": "1"
+                            },
+                            "_text": "43649391"
+                        },
+                        "cbc:FirstName": {
+                            "_text": "Abel"
+                        },
+                        "cbc:FamilyName": {
+                            "_text": "Arana"
+                        },
+                        "cbc:JobTitle": {
+                            "_text": "Principal"
+                        },
+                        "cac:IdentityDocumentReference": {
+                            "cbc:ID": {
+                                "_text": "A32456876"
+                            }
+                        }
+                    }
+                ]
+            },
+            "cac:Delivery": {
+                "cac:DeliveryAddress": {
+                    "cbc:ID": {
+                        "_text": "120101"
+                    },
+                    "cac:AddressLine": {
+                        "cbc:Line": {
+                            "_text": "lima 433"
+                        }
+                    }
+                },
+                "cac:Despatch": {
+                    "cac:DespatchAddress": {
+                        "cbc:ID": {
+                            "_text": "150115"
+                        },
+                        "cac:AddressLine": {
+                            "cbc:Line": {
+                                "_text": "PARURA 139"
+                            }
+                        }
+                    },
+                    "cac:DespatchParty": {
+                        "cac:PartyIdentification": {
+                            "cbc:ID": {
+                                "_attributes": {
+                                    "schemeID": "1"
+                                },
+                                "_text": "43649390"
+                            }
+                        },
+                        "cac:PartyLegalEntity": {
+                            "cbc:RegistrationName": {
+                                "_text": "ABEL CARLOS ARANA CORTEZ"
+                            }
+                        }
+                    }
+                }
+            },
+            "cac:TransportHandlingUnit": {
+                "cac:TransportEquipment": {
+                    "cbc:ID": {
+                        "_text": "WEP112"
+                    }
+                }
+            }
+        },
+        "cac:DespatchLine": [
+            {
+                "cbc:ID": {
+                    "_text": 1
+                },
+                "cbc:DeliveredQuantity": {
+                    "_attributes": {
+                        "unitCode": "NIU"
+                    },
+                    "_text": 1
+                },
+                "cac:OrderLineReference": {
+                    "cbc:LineID": {
+                        "_text": 1
+                    }
+                },
+                "cac:Item": {
+                    "cbc:Description": {
+                        "_text": "caja negra grande"
+                    }
+                }
+            },
+            {
+                "cbc:ID": {
+                    "_text": 2
+                },
+                "cbc:DeliveredQuantity": {
+                    "_attributes": {
+                        "unitCode": "NIU"
+                    },
+                    "_text": 2
+                },
+                "cac:OrderLineReference": {
+                    "cbc:LineID": {
+                        "_text": 2
+                    }
+                },
+                "cac:Item": {
+                    "cbc:Description": {
+                        "_text": "fardo negro grande"
+                    }
+                }
+            }
+        ]
+    }
+}
