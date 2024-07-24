@@ -13,6 +13,7 @@ class Cotizacion extends Model
         'customer_id',
         'user_id',
         'line_id',
+        'estado',
     ];
     public function customer(){
         return $this->belongsTo(Customer::class);

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('line_id')->constrained('lines')->onDelete('cascade');
-            $table->boolean('estado')->default(true);;
+            $table->boolean('estado')->default(false);;
             $table->timestamps();
         });
     }
