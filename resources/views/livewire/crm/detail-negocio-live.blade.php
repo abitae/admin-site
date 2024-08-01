@@ -132,8 +132,8 @@
                                 </div>
                             </div>
                             <div class="inline-flex items-center w-auto xl:w-auto 2xl:w-auto">
-                                <x-delete-button wire:click='delete({{ $action->id }})' wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $action->id }}' para confirmar!|{{ $action->id }}">
-                                </x-delete-button>
+                                <x-button.button-delete wire:click='delete({{ $action->id }})' wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $action->id }}' para confirmar!|{{ $action->id }}">
+                                </x-button.button-delete>
 
                             </div>
                         </div>
@@ -211,9 +211,9 @@
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-full">
-                        <x-primary-button type='submit'>
+                        <x-button.button-save type='submit'>
                             Actualizar
-                        </x-primary-button>
+                        </x-button.button-save>
                     </div>
                 </div>
             </form>
@@ -310,9 +310,9 @@
                                 </x-area-input>
                             </div>
                             <div class="col-span-6 sm:col-full">
-                                <x-primary-button type='submit'>
+                                <x-button.button-save type='submit'>
                                     Actualizar
-                                </x-primary-button>
+                                </x-button.button-save>
                             </div>
                         </div>
                     </form>

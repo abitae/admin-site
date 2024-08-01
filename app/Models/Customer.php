@@ -27,8 +27,8 @@ class Customer extends Model
     {
         return $this->hasMany(Cotizacion::class);
     }
-    public function orders()
+    public function inventories()
     {
-        //return $this->hasMany(Order::class);
+        return $this->hasMany(InventoryExit::class);
     }
 }

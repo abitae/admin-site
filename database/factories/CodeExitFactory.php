@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Compra>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CodeExit>
  */
-class CompraFactory extends Factory
+class CodeExitFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +18,8 @@ class CompraFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_id'=>$this->faker->randomElement(Product::pluck('id')->toArray()),
+            'name'=> $this->faker->uuid(),
         ];
     }
 }

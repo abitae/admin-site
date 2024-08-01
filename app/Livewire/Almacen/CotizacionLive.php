@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Line;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 
 class CotizacionLive extends Component
@@ -21,11 +22,9 @@ class CotizacionLive extends Component
 
     public $line_id; // select linea o marca
     public $cotizacionNew;
-
-    public $product_id_detalle;
     public $cantitad_detalle = 1;
     public $price_cotizacion = 0;
-    public $total_cotizacion = 0;
+
     public function mount()
     {
         $this->customerSelect = Customer::first();
@@ -34,10 +33,14 @@ class CotizacionLive extends Component
 
     public function render()
     {
+        $items = Cart::content();
+        $total = Cart::subtotal();
+        $igv = (double)filter_var($total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) / 1.18;
+        $sub_total = (double)filter_var($total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)  - $igv;
         $customers = Customer::all();
         $products = Product::all();
         $lines = Line::all();
-        return view('livewire.almacen.cotizacion-live', compact('customers', 'products', 'lines'));
+        return view('livewire.almacen.cotizacion-live', compact('customers', 'products', 'lines', 'items','total', 'igv', 'sub_total'));
     }
     public function updatedCustomer()
     {
@@ -46,23 +49,25 @@ class CotizacionLive extends Component
     public function updatedProduct()
     {
         $this->productSelect = Product::find($this->product);
-        $this->price_cotizacion = $this->productSelect->price_venta;
     }
     public function AddProductCotizacion()
     {
-        $item_cotizacion = new CotizacionDetalle();
         if (isset($this->productSelect)) {
-            $item_cotizacion->product_id = $this->productSelect->id;
-            $item_cotizacion->cantidad = $this->cantitad_detalle;
-            $item_cotizacion->price_cotizacion = $this->price_cotizacion;
-            $this->productos_cotizados = array_push($item_cotizacion);
-            dd($$this->productos_cotizados);
+            Cart::add(['id' => $this->productSelect->id,
+                'name' => $this->productSelect->code,
+                'qty' => $this->cantitad_detalle,
+                'price' => $this->price_cotizacion,
+                'weight' => 0]);
         }
+    }
+    public function delete($rowId){
+        Cart::remove($rowId);
     }
     public function exportar()
     {
+
         $cotizacion = $this->cotizacionNew;
-        $total_cotizacion = $this->total_cotizacion;
+        $total_cotizacion = Cart::subtotal();
 
         $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->setPaper('a4', 'portrait')

@@ -1,15 +1,24 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '3818e99f3f59be3220f1712e7e9d33f9de24c9b1',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '682273f50eadcf96801c6595eac6f2e7bb19dbc3',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'anayarojo/shoppingcart' => array(
+            'pretty_version' => '4.2.3',
+            'version' => '4.2.3.0',
+            'reference' => '96e0f3c88cbb5ec2c28e09b1e480e28103fcbe1e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../anayarojo/shoppingcart',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'barryvdh/laravel-dompdf' => array(
             'pretty_version' => 'v2.2.0',
             'version' => '2.2.0.0',
@@ -434,9 +443,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '3818e99f3f59be3220f1712e7e9d33f9de24c9b1',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '682273f50eadcf96801c6595eac6f2e7bb19dbc3',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProductStore extends Model
 {
     use HasFactory;
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
 }

@@ -59,34 +59,21 @@
                 </nav>
             </div>
         </div>
-        <!-- Card header -->
-        <div class="items-center justify-between lg:flex">
-            <div class="mb-4 lg:mb-0">
 
-                <h4 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                    COTIZACION
-                </h4>
-
-                <div class="relative max-w-sm">
-                    <p class="text-md font-bold text-gray-900 dark:text-white">
-                        Formato
-                    </p>
-                    <div class="pt-2 pb-0">
-                        <select wire:model.live="line_id" id="line_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            @isset($lines)
-                                @forelse ($lines as $line)
-                                    <option value="{{ $line->id }}">
-                                        {{ $line->name }}
-                                    </option>
-                                @empty
-                                @endforelse
-                            @endisset
-                        </select>
-                    </div>
-                    <div wire:ignore class="pt-4 pb-4">
-                        <select id="customer_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <div class="bg-background text-card-foreground p-8 dark:text-white rounded-lg shadow-lg max-w-3xl mx-auto">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="h-8 w-8 mr-2">
+                        <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+                    </svg>
+                    <h1 class="text-2xl font-bold">COTIZACION</h1>
+                </div>
+                <div class="text-right">
+                    <h2 class="text-xl font-bold">Cliente</h2>
+                    <div wire:ignore>
+                        <select id="customer_id">
                             @isset($customers)
                                 @forelse ($customers as $customer)
                                     <option value="{{ $customer->id }}">
@@ -97,205 +84,114 @@
                                 @empty
                                 @endforelse
                             @endisset
-
                         </select>
                     </div>
+                    @isset($customerSelect)
+                        <p>RUC : {{ $customerSelect->code }}</p>
+                        <p>Razon : {{ $customerSelect->first_name }}</p>
+                        <p>Email: {{ $customerSelect->email }}</p>
+                        <p>Email: {{ $customerSelect->phone }}</p>
+                    @endisset
+                </div>
+            </div>
+            <div class="border-t border-muted pt-4 mb-6">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left">
+                            <th class="pb-2"></th>
+                            <th class="pb-2 w-62">CODIGO</th>
+                            <th class="pb-2 text-right">CANTIDAD</th>
+                            <th class="pb-2 text-right">PRECIO UNIT</th>
+                            <th class="pb-2 text-right">SUB TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @isset($items)
+                            @forelse ($items as $item)
+                                <tr wire:key='det-{{ $item->id }}'>
+                                    <td class="py-2">
+                                        <x-delete-button wire:click="delete('{{ $item->rowId }}')">
 
-                    <ul class="text-md text-gray-900 dark:text-white">
-                        @isset($customerSelect)
-                            <li>RUC : {{ $customerSelect->code }} {{ $line_id }} </li>
-                            <li>Razon : {{ $customerSelect->first_name }}</li>
-                            <li>Direccion : {{ $customerSelect->address }}</li>
+                                        </x-delete-button>
+                                    </td>
+                                    <td class="py-2">{{ $item->rowId }}</td>
+                                    <td class="py-2 text-right">{{ $item->qty }}</td>
+                                    <td class="py-2 text-right">{{ $item->price }}</td>
+                                    <td class="py-2 text-right">{{ $item->priceTotal }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td>
+                                        No hay registros
+                                    </td>
+                                </tr>
+                            @endforelse
+                        @else
+                            <tr>
+                                <td>
+                                    No hay registros hols
+                                </td>
+                            </tr>
                         @endisset
-                    </ul>
+                        <tr>
+                            <td class="py-2">
+                                <x-purple-button class='p-0' wire:click="AddProductCotizacion">
+                                </x-purple-button>
+                            </td>
+                            <td class="py-2">
+                                <div wire:ignore>
+                                    <select id="product_id">
+                                        @isset($products)
+                                            @forelse ($products as $product)
+                                                <option value="{{ $product->id }}">
+                                                    {{ $product->code }}
+                                                </option>
+                                            @empty
+                                            @endforelse
+                                        @endisset
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="py-2">
+                                <x-text-input wire:model.live='cantitad_detalle' class='p-0.5 text-right' type='number'
+                                    for='' label='' placeholder="Cantidad">
+                                </x-text-input>
+                            </td>
+                            <td class="py-2 text-right">
+                                <x-text-input wire:model.live='price_cotizacion' class='p-0.5 text-right' type='number'
+                                    for='' label='' placeholder="Precio">
+                                </x-text-input>
+                            </td>
+                            <td class="py-2 text-right"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="border-t border-muted pt-4 flex justify-end">
+                <div class="w-1/2 text-right">
+                    <div class="flex justify-between mb-2">
+                        <span>Subtotal:</span>
+                        <span>S/ {{ round($igv, 2) }}</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span>IGV:</span>
+                        <span>S/ {{ round($sub_total, 2) }}</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span>Total:</span>
+                        <span class="font-bold">S/ {{ $total }}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="items-center justify-between lg:flex">
-            <div class="mb-4 lg:mb-0">
-                <div class="grid grid-flow-col auto-cols-max space-x-1">
-                    <div wire:ignore class="pt-4 pb-4 w-64">
-                        <label class="block text-sm font-medium text-gray-900 dark:text-white"
-                            for="product_id">Producto</label>
-                        <select id="product_id">
-                            @isset($products)
-                                @forelse ($products as $product)
-                                    <option value="{{ $product->id }}">
-                                        {{ $product->code }} - {{ $product->code_fabrica }} - {{ $product->code_peru }}
-                                    </option>
-                                @empty
-                                @endforelse
-                            @endisset
-                        </select>
-                    </div>
-                    <div>
-                        <x-text-input wire:model.live='cantitad_detalle' class="w-16 p-1" type='number' for=''
-                            label='Cantidad' placeholder="Cantidad">
-                        </x-text-input>
-                    </div>
-                    <div>
-                        <x-text-input wire:model.live='price_cotizacion' class="w-16" type='number' for=''
-                            label='Precio Unitario' placeholder="Precio">
-                        </x-text-input>
-                    </div>
-                    <div class="pt-5">
-                        <x-purple-button wire:click="AddProductCotizacion">
-                            Add
+            <div class="border-t border-muted pt-4 flex justify-end">
+                <div class="w-1/2 text-right">
+                    <div class="flex justify-between mb-2">
+                        <x-purple-button wire:click="save">
+                            GUARDAR
                         </x-purple-button>
-                    </div>
-                    <div class="pt-5">
                         <x-purple-button wire:click="exportar">
-                            Export
+                            EXPORTAR
                         </x-purple-button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-col mt-6">
-            <div class="overflow-x-auto rounded-lg">
-                <div class="inline-block min-w-full align-middle">
-                    <div class="overflow-hidden shadow sm:rounded-lg">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th scope="col"
-                                        class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                        ID
-                                    </th>
-                                    <th scope="col"
-                                        class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                        CODIGO
-                                    </th>
-                                    <th scope="col"
-                                        class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-white">
-                                        CANTIDAD
-                                    </th>
-                                    <th scope="col"
-                                        class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase text-end dark:text-white">
-                                        PRECIO UNIT
-                                    </th>
-
-                                    <th scope="col"
-                                        class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase text-end dark:text-white">
-                                        SUB TOTAL
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-gray-800">
-                                @isset($this->productos_cotizados)
-                                    @forelse ($this->productos_cotizados as $item)
-                                        <tr>
-                                            <td class="p-1 text-xs font-normal text-gray-900 dark:text-white">
-                                                {{ $item->product->id }}
-                                            </td>
-                                            <td class="text-xs font-normal text-gray-500 dark:text-gray-400">
-                                                {{ $item->product->code }}
-                                            </td>
-                                            <td class="text-xs font-normal text-center text-gray-900 dark:text-white">
-                                                {{ $item->cantidad }}
-                                            </td>
-                                            <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                                {{ $item->price_cotizacion }}
-                                            </td>
-                                            <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                                {{ $item->price_cotizacion * $item->cantidad }}
-                                            </td>
-
-                                        </tr>
-
-                                    @empty
-                                        <tr>
-                                            <td>
-                                                No hay registros
-                                            </td>
-
-                                        </tr>
-                                    @endforelse
-                                @else
-                                    <tr>
-                                        <td>
-                                            No hay registros
-                                        </td>
-
-                                    </tr>
-                                @endisset
-
-                                <tr>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        -----------
-                                    </td>
-                                </tr>
-                                <tr>
-
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        SUB TOTAL
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        S/ 20.90
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        IGV
-
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        S/ 20.90
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-
-                                    </td>
-                                    <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        -----------
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="bg-gray-50 dark:bg-gray-600">
-                                    </td>
-                                    <td class="font-bold text-gray-500 text-md text-end dark:text-gray-400">
-                                        TOTAL
-                                    </td>
-                                    <td class="font-bold text-gray-500 text-md text-end dark:text-gray-400">
-                                        S/ {{ $total_cotizacion }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

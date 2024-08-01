@@ -68,7 +68,7 @@ class ActionForm extends Form
     {
         //dd($this->description);
         try {
-            $this->Action->update([
+            $this->action->update([
                 'negocio_id' => $this->negocio_id,
                 'contact_id' => $this->contact_id,
                 'tipo' => $this->tipo,

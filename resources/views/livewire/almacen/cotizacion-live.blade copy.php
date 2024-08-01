@@ -85,8 +85,7 @@
                         </select>
                     </div>
                     <div wire:ignore class="pt-4 pb-4">
-                        <select id="customer_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="customer_id">
                             @isset($customers)
                                 @forelse ($customers as $customer)
                                     <option value="{{ $customer->id }}">
@@ -97,7 +96,6 @@
                                 @empty
                                 @endforelse
                             @endisset
-
                         </select>
                     </div>
 
@@ -182,27 +180,25 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800">
-                                @isset($this->productos_cotizados)
-                                    @forelse ($this->productos_cotizados as $item)
+                                @isset($items)
+                                    @forelse ($items as $item)
                                         <tr>
                                             <td class="p-1 text-xs font-normal text-gray-900 dark:text-white">
-                                                {{ $item->product->id }}
+                                                {{ $item->id }}
                                             </td>
                                             <td class="text-xs font-normal text-gray-500 dark:text-gray-400">
-                                                {{ $item->product->code }}
+                                                {{ $item->name }}
                                             </td>
                                             <td class="text-xs font-normal text-center text-gray-900 dark:text-white">
-                                                {{ $item->cantidad }}
+                                                {{ $item->qty }}
                                             </td>
                                             <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                                {{ $item->price_cotizacion }}
+                                                {{ $item->price }}
                                             </td>
                                             <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                                {{ $item->price_cotizacion * $item->cantidad }}
+                                                {{ $item->priceTotal }}
                                             </td>
-
                                         </tr>
-
                                     @empty
                                         <tr>
                                             <td>
@@ -214,7 +210,7 @@
                                 @else
                                     <tr>
                                         <td>
-                                            No hay registros
+                                            No hay registros hols
                                         </td>
 
                                     </tr>
@@ -246,7 +242,8 @@
                                         SUB TOTAL
                                     </td>
                                     <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        S/ 20.90
+                                        S/ {{ round($igv, 2)  }}
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -262,7 +259,7 @@
 
                                     </td>
                                     <td class="text-xs font-normal text-gray-500 text-end dark:text-gray-400">
-                                        S/ 20.90
+                                        S/ {{ round($sub_total, 2)  }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -291,7 +288,7 @@
                                         TOTAL
                                     </td>
                                     <td class="font-bold text-gray-500 text-md text-end dark:text-gray-400">
-                                        S/ {{ $total_cotizacion }}
+                                        S/ {{ $total }}
                                     </td>
                                 </tr>
                             </tbody>

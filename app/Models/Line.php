@@ -11,6 +11,9 @@ class Line extends Model
     protected $fillable = [
         'code',
         'name',
+        'logo',
+        'fondo',
+        'archivo',
         'isActive',
     ];
     public function products()

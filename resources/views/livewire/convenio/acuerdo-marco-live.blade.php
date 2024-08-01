@@ -31,7 +31,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{route('convenio.data')}}"
+                            <a href="{{ route('convenio.data') }}"
                                 class="flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
                                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@
                     </ol>
                 </nav>
                 <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                    All acuerdoMarcos
+                    Acuerdos marco
                 </h1>
             </div>
             <div class="sm:flex">
@@ -55,93 +55,20 @@
                     <div class="relative mt-1 lg:w-64 xl:w-96">
                         <input type="text" wire:model.live='search'
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Search for acuerdoMarcos">
-                    </div>
-                    <div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
-                        <a href="#"
-                            class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                        <a href="#"
-                            class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                        <a href="#"
-                            class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                        <a href="#"
-                            class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
-                                </path>
-                            </svg>
-                        </a>
+                            placeholder="Search for acuerdos marco">
                     </div>
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                    <x-purple-button wire:click="create">
+                    <x-button.button-pluss-purple wire:click="create">
                         Create
-                    </x-purple-button>
-                    <x-download-button>
+                    </x-button.button-pluss-purple>
+                    <x-button.button-download>
                         Export
-                    </x-download-button>
-                    <x-download-button>
-                        Export
-                    </x-download-button>
-                    @if ($isOpenModal)
-                        <x-modal title="{{ isset($acuerdoMarcoForm->acuerdoMarco) ? 'Update User' : 'Create acuerdoMarco' }}" maxWidth='2xl'>
-                            <form class="form"
-                                wire:submit="{{ isset($acuerdoMarcoForm->acuerdoMarco) ? 'updateAcuerdoMarco' : 'createAcuerdoMarco' }}">
-                                <div class="p-4 md:p-5 space-y-4">
-                                    <div class="grid grid-cols-6 gap-6">
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <x-text-input wire:model.live='acuerdoMarcoForm.code' type='text' for='code'
-                                                label='Codigo' placeholder='Ingrese codigo' />
-                                            @error('acuerdoMarcoForm.code')
-                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                                        class="font-medium">Error!</span> {{ $message }}.</p>
-                                            @enderror
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <x-text-input wire:model.live='acuerdoMarcoForm.name' type='text' for='name'
-                                                label='Descripcion' placeholder='Descripcion acuerdo marco' />
-                                            @error('acuerdoMarcoForm.name')
-                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                                        class="font-medium">Error!</span> {{ $message }}.</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    <x-danger-button type="button" wire:click="$toggle('isOpenModal')">
-                                        Cancel
-                                    </x-danger-button>
-                                    <x-primary-button type='submit'>
-                                        Guardar
-                                    </x-primary-button>
-                                </div>
-                            </form>
-                        </x-modal>
-                    @endif
+                    </x-button.button-download>
+                    <x-button.button-upload>
+                        Import
+                    </x-button.button-upload>
+                    @include('livewire.convenio.acuerdo-marco-modal')
                 </div>
             </div>
         </div>

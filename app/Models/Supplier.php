@@ -19,4 +19,8 @@ class Supplier extends Model
         'address',
         'isActive',
     ];
+    public function inventories()
+    {
+        return $this->hasMany(InventoryEntry::class);
+    }
 }

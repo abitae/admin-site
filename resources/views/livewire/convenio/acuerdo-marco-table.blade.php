@@ -26,15 +26,15 @@
                     <tbody class="bg-white dark:bg-gray-800">
                         @forelse ($this->acuerdoMarcos as $data)
                             <tr wire:key='acuerdoMarco-{{ $data->id }}'>
-                                <td class="p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
 
                                     {{ $data->code }}
 
                                 </td>
-                                <td class="p-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                                <td class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
                                     {{ $data->name }}
                                 </td>
-                                <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                <td class="p-4 text-xs font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                     <button wire:click='estado({{ $data->id }})'
                                         wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba 'SI' para confirmar!|SI"
                                         class="flex items-center">
@@ -45,11 +45,11 @@
                                     </button>
                                 </td>
                                 <td class="p-4 space-x-2 whitespace-nowrap">
-                                    <x-edit-button wire:click='update({{ $data->id }})'>
-                                    </x-edit-button>
-                                    <x-delete-button wire:click='delete({{ $data->id }})'
+                                    <x-button.button-edit wire:click='update({{ $data->id }})'>
+                                    </x-button.button-edit>
+                                    <x-button.button-delete wire:click='delete({{ $data->id }})'
                                         wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $data->code }}' para confirmar!|{{ $data->code }}">
-                                    </x-delete-button>
+                                    </x-button.button-delete>
                                 </td>
                             </tr>
                         @empty

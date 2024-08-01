@@ -101,10 +101,10 @@
                                 </button>
                             </td>
                             <td class="p-4 space-x-2 whitespace-nowrap">
-                                <x-edit2-button wire:click='update({{ $negocio->id }})'>
-                                </x-edit2-button>
-                                <x-edit-button wire:click='detail({{ $negocio->id }})'>
-                                </x-edit-button>
+                                <x-button.button-edit wire:click='update({{ $negocio->id }})'>
+                                </x-button.button-edit>
+                                <x-button.button-view wire:click='detail({{ $negocio->id }})'>
+                                </x-button.button-view>
                             </td>
                         </tr>
                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">

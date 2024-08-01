@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('logo');
+            $table->string('fondo');
+            $table->string('archivo');
             $table->boolean('isActive')->default(true);
             $table->timestamps();
         });

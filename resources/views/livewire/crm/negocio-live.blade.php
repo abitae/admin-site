@@ -76,15 +76,15 @@
                     </div>
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                    <x-purple-button wire:click='create'>
+                    <x-button.button-pluss-purple wire:click="create">
                         Create
-                    </x-purple-button>
-                    <x-upload-button>
-                        Import
-                    </x-upload-button>
-                    <x-download-button>
+                    </x-button.button-pluss-purple>
+                    <x-button.button-download>
                         Export
-                    </x-download-button>
+                    </x-button.button-download>
+                    <x-button.button-upload>
+                        Import
+                    </x-button.button-upload>
                     <div>
                         @include('livewire.crm.negocio-modal')
                     </div>

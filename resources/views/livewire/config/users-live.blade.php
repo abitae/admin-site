@@ -98,15 +98,15 @@
                     </div>
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                    <x-purple-button wire:click="create">
+                    <x-button.button-pluss-purple wire:click="create">
                         Create
-                    </x-purple-button>
-                    <x-download-button>
+                    </x-button.button-pluss-purple>
+                    <x-button.button-download>
                         Export
-                    </x-download-button>
-                    <x-download-button>
-                        Export
-                    </x-download-button>
+                    </x-button.button-download>
+                    <x-button.button-upload>
+                        Import
+                    </x-button.button-upload>
                     @if ($isOpenModal)
                         <x-modal title="{{ isset($userForm->user) ? 'Update User' : 'Create user' }}" maxWidth='sm'>
                             <form class="form"
@@ -146,12 +146,12 @@
                                 </div>
                                 <div
                                     class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    <x-danger-button type="button" wire:click="$toggle('isOpenModal')">
+                                    <x-button.button-danger type="button" wire:click="$toggle('isOpenModal')">
                                         Cancel
-                                    </x-danger-button>
-                                    <x-primary-button type='submit'>
+                                    </x-button.button-danger>
+                                    <x-button.button-save type='submit'>
                                         Guardar
-                                    </x-primary-button>
+                                    </x-button.button-save>
                                 </div>
                             </form>
                         </x-modal>
@@ -220,11 +220,11 @@
                                     </button>
                                 </td>
                                 <td class="p-4 space-x-2 whitespace-nowrap">
-                                    <x-edit-button wire:click='update({{ $user->id }})'>
-                                    </x-edit-button>
-                                    <x-delete-button wire:click='delete({{ $user->id }})'
+                                    <x-button.button-edit wire:click='update({{ $user->id }})'>
+                                    </x-button.button-edit>
+                                    <x-button.button-delete wire:click='delete({{ $user->id }})'
                                         wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $user->name }}' para confirmar!|{{ $user->name }}">
-                                    </x-delete-button>
+                                    </x-button.button-delete>
                                 </td>
                             </tr>
                         @empty

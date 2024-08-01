@@ -7,6 +7,7 @@ use App\Models\Line;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
@@ -14,6 +15,7 @@ class LineLive extends Component
 {
     use WithPagination, WithoutUrlPagination;
     use LivewireAlert;
+    use WithFileUploads;
     public LineForm $lineForm;
     public $search = '';
     public $num = 10;

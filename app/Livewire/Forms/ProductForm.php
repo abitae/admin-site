@@ -4,10 +4,10 @@ namespace App\Livewire\Forms;
 
 use App\Exports\ProductsExport;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Maatwebsite\Excel\Facades\Excel;
-use Storage;
 
 class ProductForm extends Form
 {

@@ -17,7 +17,9 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->randomNumber(8, false),
+            'ubicacion' => $this->faker->address(),
+            'isActive' => true,
         ];
     }
 }

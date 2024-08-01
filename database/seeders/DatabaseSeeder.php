@@ -6,14 +6,19 @@ use App\Models\ActionNegocio;
 use App\Models\AcuerdoMarco;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\CodeExit;
 use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Employee;
+use App\Models\Inventory;
+use App\Models\InventoryEntry;
+use App\Models\InventoryExit;
 use App\Models\Line;
 use App\Models\Negocio;
+use App\Models\Store;
 use App\Models\Supplier;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Warehouse;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -156,5 +161,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'EXT-CE-2021-7 ÚTILES DE ESCRITORIO, PAPELES Y CARTONES',
             'isActive' => true,
         ]);
+        Warehouse::factory(10)->create();
+        Inventory::factory(200)->create();
+        InventoryEntry::factory(1000)->create();
+        InventoryExit::factory(1000)->create();
+        CodeExit::factory(300)->create();
     }
 }

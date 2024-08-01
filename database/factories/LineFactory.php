@@ -19,6 +19,9 @@ class LineFactory extends Factory
         return [
             'code' => $this->faker->randomNumber(8, false),
             'name' => $this->faker->name(),
+            'logo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
+            'fondo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
+            'archivo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
             'isActive' => true,
         ];
     }

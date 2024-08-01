@@ -29,17 +29,28 @@ class Product extends Model
         'archivo',
         'isActive',
     ];
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
-    public function brand(){
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
-    public function line(){
+    public function line()
+    {
         return $this->belongsTo(Line::class);
     }
     public function cotizaciondetalles()
     {
         return $this->hasMany(CotizacionDetalle::class);
+    }
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
+    public function codexits()
+    {
+        return $this->hasMany(CodeExit::class);
     }
 }

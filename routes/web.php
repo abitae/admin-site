@@ -17,11 +17,14 @@ use App\Livewire\Almacen\ProductLive;
 use App\Livewire\Almacen\CotizacionLive;
 use App\Livewire\Crm\DetailNegocioLive;
 use App\Livewire\Crm\NegocioLive;
+
+use App\Livewire\Inventario\WarehouseLive;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -59,5 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/negocios', NegocioLive::class)->name('crm.negocios');
     Route::get('/detailcrm/{id}', DetailNegocioLive::class)->name('crm.detail');
     //Route::get('/detailcrm', DetailNegocioLive::class)->name('crm.detailnew');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/warehouses', WarehouseLive::class)->name('inventario.warehouses');
+   // Route::get('/inventory', InventoryLive::class)->name('kardex.inventory');
 });
 require __DIR__ . '/auth.php';

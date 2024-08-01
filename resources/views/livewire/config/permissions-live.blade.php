@@ -63,9 +63,9 @@
             <div class="sm:flex">
 
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                    <x-purple-button wire:click="update">
-                        Actualizar
-                    </x-purple-button>
+                    <x-button.button-save wire:click="update">
+                        Guardar
+                    </x-button.button-save>
                 </div>
             </div>
         </div>

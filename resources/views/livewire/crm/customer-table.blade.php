@@ -61,11 +61,11 @@
                                 </button>
                             </td>
                             <td class="p-4 space-x-2 whitespace-nowrap">
-                                <x-edit-button wire:click='update({{ $customer->id }})'>
-                                </x-edit-button>
-                                <x-delete-button wire:click='delete({{ $customer->id }})'
+                                <x-button.button-edit wire:click='update({{ $customer->id }})'>
+                                </x-button.button-edit>
+                                <x-button.button-delete wire:click='delete({{ $customer->id }})'
                                     wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $customer->code }}' para confirmar!|{{ $customer->code }}">
-                                </x-delete-button>
+                                </x-button.button-delete>
                             </td>
                         </tr>
                     @empty

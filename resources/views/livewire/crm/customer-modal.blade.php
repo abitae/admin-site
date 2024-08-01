@@ -77,13 +77,12 @@
                 </div>
             </div>
             <div class="flex items-center p-4 border-t border-gray-200 rounded-b md:p-5 dark:border-gray-600">
-                <x-danger-button type="button" wire:click="$toggle('isOpenModal')">
+                <x-button.button-danger type="button" wire:click="$toggle('isOpenModal')">
                     Cancel
-                </x-danger-button>
-                <x-primary-button type='submit'>
+                </x-button.button-danger>
+                <x-button.button-save type='submit'>
                     Guardar
-                </x-primary-button>
-
+                </x-button.button-save>
             </div>
         </form>
     </x-modal>

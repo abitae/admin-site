@@ -7,7 +7,7 @@ use App\Models\Brand;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Str;
+
 class BrandForm extends Form
 {
     public ?Brand $brand;

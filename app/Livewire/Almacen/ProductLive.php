@@ -8,13 +8,13 @@ use App\Models\Category;
 use App\Models\Line;
 use App\Models\Product;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
-use PDF;
 
 class ProductLive extends Component
 {
@@ -152,7 +152,7 @@ class ProductLive extends Component
     public function export()
     {
         $users = User::all();
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+        $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->setPaper('a4', 'portrait')
             ->loadView('livewire.almacen.report.cotizacion')
             ->output();

@@ -8,7 +8,6 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
-use Storage;
 
 class ImportProductLive extends Component
 {
@@ -22,11 +21,15 @@ class ImportProductLive extends Component
     }
     public function import()
     {
+        if ($this->file->getClientOriginalExtension() !== 'xlsx') {
+            $this->message('error', 'Error!', 'El archivo debe ser un Excel (.xlsx)');
+            return;
+        }
         try {
             Excel::import(new ProductsImport, $this->file);
             $this->message('success', 'En hora buena!', 'Archivo procesado correctamente!');
             $this->file = null;
-            infoLog('CM import', \Auth::user()->email);
+            infoLog('CM import', auth()->user()->email);
         } catch (\Exception $e) {
             $this->message('error', 'Error!', 'No se pudo procesar el archivo!');
             $this->file = null;

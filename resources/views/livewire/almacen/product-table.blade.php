@@ -44,7 +44,7 @@
                         @forelse ($this->products as $product)
                         <tr wire:key='producto-{{ $product->id }}' class="hover:bg-gray-100 dark:hover:bg-gray-700">
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
-                                <img width="120" height="120" src="{{ asset("storage/herd$product->image") }}">
+                                <img width="120" height="120" src="{{ asset("storage/$product->image") }}">
                             </td>
                             <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
                                 <p class="text-xs text-hover-primary mb-1">
@@ -72,11 +72,11 @@
                                 
                             </td>
                             <td class="p-4 space-x-2 whitespace-nowrap">
-                                <x-edit-button wire:click='update({{ $product->id }})'>
-                                </x-edit-button>
-                                <x-delete-button wire:click='delete({{ $product->id }})'
+                                <x-button.button-edit wire:click='update({{ $product->id }})'>
+                                </x-button.button-edit>
+                                <x-button.button-delete wire:click='delete({{ $product->id }})'
                                     wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $product->code }}' para confirmar!|{{ $product->code }}">
-                                </x-delete-button>
+                                </x-button.button-delete>
                             </td>
                         </tr>
                         @empty

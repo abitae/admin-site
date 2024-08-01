@@ -84,14 +84,14 @@
                             <div>
                                 <input wire:model='file' id="dropzone-file" wire:loading.attr="disabled" wire:target='import' type="file" class="hidden" />
                                 @if ($file)
-                                    <x-process-button  type='submit'>
+                                    <x-button.button-process type='submit'>
                                         <div wire:loading.remove wire:target='import'>
                                             Procesar
                                         </div>
                                         <div wire:loading wire:target='import'>
                                             Procesando<i class="fa-solid fa-spinner fa-spin-pulse"></i>
                                         </div>
-                                    </x-process-button>
+                                    </x-button.button-process>
                                 @endif
                             </div>
                         </form>
