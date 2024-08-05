@@ -15,6 +15,7 @@ use App\Models\InventoryEntry;
 use App\Models\InventoryExit;
 use App\Models\Line;
 use App\Models\Negocio;
+use App\Models\ProductStore;
 use App\Models\Store;
 use App\Models\Supplier;
 use App\Models\User;
@@ -161,6 +162,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'EXT-CE-2021-7 ÚTILES DE ESCRITORIO, PAPELES Y CARTONES',
             'isActive' => true,
         ]);
+        ProductStore::factory(200)->create();
         Warehouse::factory(10)->create();
         Inventory::factory(200)->create();
         InventoryEntry::factory(1000)->create();

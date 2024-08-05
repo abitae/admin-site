@@ -17,7 +17,7 @@ use App\Livewire\Almacen\ProductLive;
 use App\Livewire\Almacen\CotizacionLive;
 use App\Livewire\Crm\DetailNegocioLive;
 use App\Livewire\Crm\NegocioLive;
-
+use App\Livewire\Inventario\InventoryLive;
 use App\Livewire\Inventario\WarehouseLive;
 
 use Illuminate\Support\Facades\Route;
@@ -66,6 +66,6 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/warehouses', WarehouseLive::class)->name('inventario.warehouses');
-   // Route::get('/inventory', InventoryLive::class)->name('kardex.inventory');
+    Route::get('/inventory', InventoryLive::class)->name('inventario.inventory');
 });
 require __DIR__ . '/auth.php';

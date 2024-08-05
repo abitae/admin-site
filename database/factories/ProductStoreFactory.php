@@ -17,7 +17,10 @@ class ProductStoreFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'code_entrada' => $this->faker->ean8(),
+            'price_compra' => $this->faker->randomFloat('2', 0, 2),
+            'price_venta' => $this->faker->randomFloat('2', 0, 2),
+            'isActive' => true,
         ];
     }
 }

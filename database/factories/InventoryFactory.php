@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\ProductStore;
 use App\Models\Warehouse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class InventoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id'=>$this->faker->randomElement(Product::pluck('id')->toArray()),
+            'product_id'=>$this->faker->randomElement(ProductStore::pluck('id')->toArray()),
             'warehouse_id'=>$this->faker->randomElement(Warehouse::pluck('id')->toArray()),
             'quantity' => $this->faker->randomNumber(3, false),
         ];

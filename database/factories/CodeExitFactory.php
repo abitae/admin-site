@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\ProductStore;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +19,8 @@ class CodeExitFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id'=>$this->faker->randomElement(Product::pluck('id')->toArray()),
-            'name'=> $this->faker->uuid(),
+            'product_store_id'=>$this->faker->randomElement(ProductStore::pluck('id')->toArray()),
+            'name'=> $this->faker->ean8(),
         ];
     }
 }
