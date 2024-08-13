@@ -17,7 +17,10 @@ use App\Livewire\Almacen\ProductLive;
 use App\Livewire\Almacen\CotizacionLive;
 use App\Livewire\Crm\DetailNegocioLive;
 use App\Livewire\Crm\NegocioLive;
+use App\Livewire\Inventario\EntryLive;
+use App\Livewire\Inventario\ExitLive;
 use App\Livewire\Inventario\InventoryLive;
+use App\Livewire\Inventario\ProductoStore;
 use App\Livewire\Inventario\WarehouseLive;
 
 use Illuminate\Support\Facades\Route;
@@ -67,5 +70,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/warehouses', WarehouseLive::class)->name('inventario.warehouses');
     Route::get('/inventory', InventoryLive::class)->name('inventario.inventory');
+    Route::get('/inventory/entry/{id}', EntryLive::class)->name('inventario.entry');
+    Route::get('/inventory/exit/{id}', ExitLive::class)->name('inventario.exit');
+    Route::get('/inventory/product', ProductoStore::class)->name('inventario.product');
 });
 require __DIR__ . '/auth.php';

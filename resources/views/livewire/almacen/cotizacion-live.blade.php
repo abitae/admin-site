@@ -1,6 +1,6 @@
 <div>
     <div
-        class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 p-6 dark:bg-gray-800">
+        class="p-6 space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div class="w-full mb-1">
             <div class="mb-4">
                 <nav class="flex mb-5" aria-label="Breadcrumb">
@@ -60,12 +60,12 @@
             </div>
         </div>
 
-        <div class="bg-background text-card-foreground p-8 dark:text-white rounded-lg shadow-lg max-w-3xl mx-auto">
+        <div class="max-w-3xl p-8 mx-auto rounded-lg shadow-lg bg-background text-card-foreground dark:text-white">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="h-8 w-8 mr-2">
+                        stroke-linejoin="round" class="w-8 h-8 mr-2">
                         <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
                     </svg>
                     <h1 class="text-2xl font-bold">COTIZACION</h1>
@@ -94,7 +94,7 @@
                     @endisset
                 </div>
             </div>
-            <div class="border-t border-muted pt-4 mb-6">
+            <div class="pt-4 mb-6 border-t border-muted">
                 <table class="w-full">
                     <thead>
                         <tr class="text-left">
@@ -110,9 +110,9 @@
                             @forelse ($items as $item)
                                 <tr wire:key='det-{{ $item->id }}'>
                                     <td class="py-2">
-                                        <x-delete-button wire:click="delete('{{ $item->rowId }}')">
+                                        <x-button.button-delete wire:click="delete('{{ $item->rowId }}')">
 
-                                        </x-delete-button>
+                                        </x-button.button-delete>
                                     </td>
                                     <td class="py-2">{{ $item->rowId }}</td>
                                     <td class="py-2 text-right">{{ $item->qty }}</td>
@@ -135,8 +135,8 @@
                         @endisset
                         <tr>
                             <td class="py-2">
-                                <x-purple-button class='p-0' wire:click="AddProductCotizacion">
-                                </x-purple-button>
+                                <x-button.button-pluss-purple class='p-0' wire:click="AddProductCotizacion">
+                                </x-button.button-pluss-purple>
                             </td>
                             <td class="py-2">
                                 <div wire:ignore>
@@ -167,7 +167,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="border-t border-muted pt-4 flex justify-end">
+            <div class="flex justify-end pt-4 border-t border-muted">
                 <div class="w-1/2 text-right">
                     <div class="flex justify-between mb-2">
                         <span>Subtotal:</span>
@@ -183,15 +183,15 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t border-muted pt-4 flex justify-end">
+            <div class="flex justify-end pt-4 border-t border-muted">
                 <div class="w-1/2 text-right">
                     <div class="flex justify-between mb-2">
-                        <x-purple-button wire:click="save">
+                        <x-button.button-save wire:click="save">
                             GUARDAR
-                        </x-purple-button>
-                        <x-purple-button wire:click="exportar">
+                        </x-button.button-save>
+                        <x-button.button-upload wire:click="exportar">
                             EXPORTAR
-                        </x-purple-button>
+                        </x-button.button-upload>
                     </div>
                 </div>
             </div>

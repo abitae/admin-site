@@ -39,7 +39,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    alamcenes
+                                    almacenes
                                 </span>
                             </div>
                         </li>

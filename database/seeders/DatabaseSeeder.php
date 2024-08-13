@@ -162,11 +162,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'EXT-CE-2021-7 ÚTILES DE ESCRITORIO, PAPELES Y CARTONES',
             'isActive' => true,
         ]);
-        ProductStore::factory(200)->create();
-        Warehouse::factory(10)->create();
-        Inventory::factory(200)->create();
-        InventoryEntry::factory(1000)->create();
-        InventoryExit::factory(1000)->create();
-        CodeExit::factory(300)->create();
+        ProductStore::factory(3)->create();
+        //Warehouse::factory(3)->create();
+        //Inventory::factory(200)->create();
+        //InventoryEntry::factory(1000)->create();
+        //InventoryExit::factory(1000)->create();
+        //CodeExit::factory(300)->create();
     }
 }

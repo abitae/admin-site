@@ -12,6 +12,7 @@ class InventoryExit extends Model
     protected $fillable = [
         'inventory_id',
         'customer_id',
+        'description',
         'exit_code',
         'quantity',
         'unit_price',

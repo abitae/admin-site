@@ -39,39 +39,51 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    alamcenes
+                                    Kardex
                                 </span>
                             </div>
                         </li>
                     </ol>
                 </nav>
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                    Almacenes
-                </h1>
+
             </div>
-            <div class="sm:flex space-x-4">
+            <div class="space-x-4 sm:flex">
                 <div
                     class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-                    <label for="warehauses-search" class="sr-only">Search</label>
+                    <label for="warehauses-id" class="sr-only">Search</label>
                     <div class="relative mt-1 lg:w-64 xl:w-96">
                         <x-select-input wire:model.live='warehouse_id' label='' for='warehouse'>
-                            <option value="">All</option>
+                            <option value="">Seleccione un almacen</option>
                             @forelse($warehouses as $warehouse)
                                 <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
                             @empty
                             @endforelse
-
                         </x-select-input>
                     </div>
-
                 </div>
                 <div
                     class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-                    <label for="warehauses-search" class="sr-only">Search</label>
+                    <label for="search" class="sr-only">Search</label>
                     <div class="relative mt-1 lg:w-64 xl:w-96">
                         <input type="text" wire:model.live='search'
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Search for producto">
+                            placeholder="Buscar por producto">
+                    </div>
+                </div>
+                <div
+                    class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+                    <label for="search" class="sr-only">Search</label>
+                    <div class="relative mt-1 lg:w-64 xl:w-96">
+                        <a href='{{ route('inventario.product') }}'
+                            class="inline-flex items-center justify-center px-3 text-sm font-medium text-white transition-colors bg-purple-600 border rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-4 h-4 mr-2">
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5v14"></path>
+                            </svg>
+                            New producto
+                        </a>
                     </div>
                 </div>
             </div>
@@ -80,47 +92,52 @@
     <div
         class="p-4 bg-white border border-gray-200 block dark:text-white sm:flex items-center justify-between  lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div class="relative w-full align-middle">
-            <div class="bg-background text-foreground p-6 rounded-lg shadow-lg">
+            <div class="p-6 rounded-lg shadow-lg bg-background text-foreground">
                 <div class="flex items-center justify-between mb-6">
-                    <h1 class="text-2xl font-bold">Inventory</h1>
+                    <h1 class="text-2xl font-bold">Inventario</h1>
                     <div class="flex gap-2">
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium dark:text-white ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="w-4 h-4 mr-2">
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5v14"></path>
-                            </svg>
-                            Add Producto
-                        </button>
-                        <button
-                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium dark:text-white ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="w-4 h-4 mr-2">
-                                <path d="M5 12h14"></path>
-                            </svg>
-                            Add Salida
-                        </button>
-
+                        @if ($warehouse_id)
+                            <a href='{{ route('inventario.entry', $warehouse_id) }}'
+                                class="inline-flex items-center justify-center px-3 text-sm font-medium text-white transition-colors bg-green-600 border rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2">
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5v14"></path>
+                                </svg>
+                                Entrada
+                            </a>
+                            <a href='{{ route('inventario.exit', $warehouse_id) }}'
+                                class="inline-flex items-center justify-center px-3 text-sm font-medium text-white transition-colors bg-red-600 border rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2">
+                                    <path d="M5 12h14"></path>
+                                </svg>
+                                Salida
+                            </a>
+                        @endif
                     </div>
                 </div>
                 <div class="overflow-x-auto">
                     <div class="relative w-full overflow-auto">
-                        <table class="w-full caption-bottom text-sm dark:text-white">
+                        <table class="w-full text-sm caption-bottom dark:text-white">
                             <thead class="border-b">
                                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground pr-0">
+                                    <th
+                                        class="h-12 px-4 pr-0 font-medium text-left align-middle text-muted-foreground">
                                         Producto
                                     </th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground pr-0">
+                                    <th
+                                        class="h-12 px-4 pr-0 font-medium text-left align-middle text-muted-foreground">
                                         Almacen
                                     </th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground pr-0">
+                                    <th
+                                        class="h-12 px-4 pr-0 font-medium text-left align-middle text-muted-foreground">
                                         Stock
                                     </th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground pr-0">
+                                    <th
+                                        class="h-12 px-4 pr-0 font-medium text-left align-middle text-muted-foreground">
                                         Code Salida
                                     </th>
                                 </tr>
@@ -128,17 +145,17 @@
                             <tbody class="border-0">
                                 @forelse ($inventories as $item)
                                     <tr wire:key='inventory-{{ $item->id }}'
-                                        class="border-b transition-colors hover:bg-muted/50">
-                                        <td class="p-4 align-middle pr-0 font-medium">
+                                        class="transition-colors border-b hover:bg-muted/50">
+                                        <td class="p-4 pr-0 font-medium align-middle">
                                             {{ $item->product->code_entrada }}
                                         </td>
-                                        <td class="p-4 align-middle pr-0">
+                                        <td class="p-4 pr-0 align-middle">
                                             {{ $item->warehouse->name }}
                                         </td>
-                                        <td class="p-4 align-middle pr-0">
+                                        <td class="p-4 pr-0 align-middle">
                                             {{ $item->quantity }}
                                         </td>
-                                        <td class="p-4 align-middle pr-0">
+                                        <td class="p-4 pr-0 align-middle">
                                             @forelse ($item->product->codexits as $item)
                                                 <span wire:key='codexits-{{ $item->id }}'
                                                     class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500">
@@ -146,7 +163,7 @@
                                                 </span>
                                             @empty
                                                 <div
-                                                    class="bg-red-300 badge badge-light-danger fw-bold dark:text-gray-700 rounded-md">
+                                                    class="bg-red-300 rounded-md badge badge-light-danger fw-bold dark:text-gray-700">
                                                     No codes
                                                 </div>
                                             @endforelse
@@ -160,7 +177,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

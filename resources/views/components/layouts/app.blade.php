@@ -10,7 +10,8 @@
     @stack('css')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <x-livewire-alert::scripts />
@@ -24,7 +25,7 @@
     </div>
     <div class="p-4 lg:ml-64">
         <div class="p-4 border-2 border-gray-200  border-dashed rounded-lg dark:border-gray-700 sm:mt-14">
-            {{ $slot}}
+            {{ $slot }}
         </div>
         <x-footer></x-footer>
         <x-copyright></x-copyright>

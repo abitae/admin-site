@@ -22,6 +22,7 @@ class InventoryEntryFactory extends Factory
         return [
             'inventory_id' => $this->faker->randomElement(Inventory::pluck('id')->toArray()),
             'supplier_id' => $this->faker->randomElement(Supplier::pluck('id')->toArray()),
+            'description' => $this->faker->text(),
             'entry_code' => $this->faker->uuid(),
             'quantity' => $this->faker->numberBetween(1, 50),
             'unit_price' => $this->faker->randomFloat(2, 0, 200),
