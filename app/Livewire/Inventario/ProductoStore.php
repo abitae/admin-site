@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class ProductoStore extends Component
 {
+    public $searchEntry = '';
     public function render()
     {
         $products = ProductStore::where('isActive', true)->paginate(10);

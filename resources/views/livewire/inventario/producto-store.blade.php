@@ -39,39 +39,62 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Entry
+                                    Nuevo producto
                                 </span>
                             </div>
                         </li>
                     </ol>
                 </nav>
-
             </div>
             <div
-                class="p-4 bg-white border border-gray-200 block dark:text-white sm:flex items-center justify-between  lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
+                class="bg-white border border-gray-200 block dark:text-white sm:flex items-center justify-between  lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
                 <div class="relative w-full align-middle">
                     <div class="p-6 rounded-lg shadow-lg bg-background text-foreground">
                         <div class="flex items-center justify-between mb-6">
-                            <h1 class="text-2xl font-bold">Nuevo producto</h1>
+                            <h1 class="text-2xl font-bold">PRODUCTOS DE INVENTARIO</h1>
                             <div class="flex gap-2">
                                 <a href="{{ route('inventario.inventory') }}"
                                     class="inline-flex items-center justify-center px-3 text-sm font-medium text-white transition-colors bg-purple-600 border rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9">
-                                    Atras
+                                    Nuevo producto
                                 </a>
                             </div>
                         </div>
                         <div class="overflow-x-auto">
-                            <div class="grid gap-4 xl:grid-cols-2 2xl:grid-cols-2 ">
-                                <!-- Main widget -->
+                            <div class="w-full">
                                 <div
-                                    class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                                    class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                                    <h1>CODIGO DE ENTRADA</h1>
+                                    <form class="max-w-full mx-auto">
+                                        <label for="default-search"
+                                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                                </svg>
+                                            </div>
+                                            <input type="search" id="default-search"
+                                                class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Buscar codigo entrada" required />
+                                            <button type="submit"
+                                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                        </div>
+                                    </form>
                                     <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                                         <thead class="bg-gray-300 dark:bg-gray-700">
                                             <tr>
-
                                                 <th scope="col"
                                                     class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                                     Code
+                                                </th>
+                                                <th scope="col"
+                                                    class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                                    Codes
                                                 </th>
                                                 <th scope="col"
                                                     class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -93,6 +116,15 @@
                                                         {{ $item->code_entrada }}
                                                     </td>
                                                     <td
+                                                        class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                        @forelse ($item->codexits as $codexit)
+                                                            <option value="{{ $codexit->id }}">
+                                                                {{ $codexit->name }}
+                                                                </option>
+                                                        @empty
+                                                        @endforelse
+                                                    </td>
+                                                    <td
                                                         class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                                         <button wire:click='estado({{ $item->id }})'
                                                             wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba 'SI' para confirmar!|SI"
@@ -106,7 +138,8 @@
                                                     <td class="p-4 space-x-2 whitespace-nowrap">
                                                         <x-button.button-edit wire:click='update({{ $item->id }})'>
                                                         </x-button.button-edit>
-                                                        <x-button.button-delete wire:click='delete({{ $item->id }})'
+                                                        <x-button.button-delete
+                                                            wire:click='delete({{ $item->id }})'
                                                             wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $item->code_entrada }}' para confirmar!|{{ $item->code_entrada }}">
                                                         </x-button.button-delete>
                                                     </td>
@@ -116,10 +149,6 @@
                                         </tbody>
                                     </table>
                                     {{ $products->links(data: ['scrollTo' => false]) }}
-                                </div>
-                                <div
-                                    class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-                                    hola 2
                                 </div>
                             </div>
                         </div>

@@ -29,17 +29,22 @@ class ExitForm extends Form
     public function store($warehouse, $product, $customer)
     {
         try {
-            $inventario = Inventory::firstOrCreate(
-                ['warehouse_id' => $warehouse->id, 'product_id' => $product],
-                ['quantity' => $this->quantity]
-            );
+            $inventario = Inventory::where('warehouse_id', $warehouse->id)
+                ->where('product_id', $product)->first();
             
-            $this->inventory_id = $inventario->id;
-            $this->customer_id = $customer;
+            if (!$inventario){
+                return false;
+            }else{
+                $inventario->quantity -= $this->quantity;
+                if ($inventario->quantity < 0) {
+                    return false;
+                }
+                $inventario->save();
+            }
 
             InventoryExit::create([
-                'inventory_id' => $this->inventory_id,
-                'customer_id' => $this->customer_id,
+                'inventory_id' => $inventario->id,
+                'customer_id' => $customer,
                 'description' => $this->description,
                 'exit_code' => $this->exit_code,
                 'quantity' => $this->quantity,

@@ -29,21 +29,26 @@ class EntryForm extends Form
     public function store($warehouse, $product, $supplier)
     {
         try {
-            $inventario = Inventory::firstOrCreate(
-                ['warehouse_id' => $warehouse->id, 'product_id' => $product],
-                ['quantity' => 0]
-            );
+
+            $inventario = Inventory::where('warehouse_id', $warehouse->id)
+                ->where('product_id', $product)->first();
             
-            $this->inventory_id = $inventario->id;
-            $this->supplier_id = $supplier;
-            $this->entry_code = ProductStore::find($product)->code_entrada;
-            //dd(ProductStore::find($product)->code_entrada);
-            //$this->validate();
+            if (!$inventario) {
+                $inventario = new Inventory();
+                $inventario->warehouse_id = $warehouse->id;
+                $inventario->product_id = $product;
+                $inventario->quantity = $this->quantity;
+                $inventario->save();
+            }else{
+                $inventario->quantity += $this->quantity;
+                $inventario->save();
+            }
+
             InventoryEntry::create([
-                'inventory_id' => $this->inventory_id,
-                'supplier_id' => $this->supplier_id,
+                'inventory_id' => $inventario->id,
+                'supplier_id' => $supplier,
                 'description' => $this->description,
-                'entry_code' => $this->entry_code,
+                'entry_code' => ProductStore::find($product)->code_entrada,
                 'quantity' => $this->quantity,
                 'unit_price' => $this->unit_price
             ]);

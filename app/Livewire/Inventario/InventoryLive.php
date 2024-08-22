@@ -21,10 +21,11 @@ class InventoryLive extends Component
     {
         $suppliers = Supplier::all();
         $products = ProductStore::all();
-        $warehouses = Warehouse::where('isActive',true)->get();
+        $warehouses = Warehouse::where('isActive', true)->get();
         $inventories = Inventory::where('warehouse_id', $this->warehouse_id)
-            ->whereHas('product', function($q){
-            $q->where('code_entrada', 'LIKE', '%' . $this->search . '%');})
+            ->whereHas('product', function ($q) {
+                $q->where('code_entrada', 'LIKE', '%' . $this->search . '%');
+            })
             ->paginate(10);
         return view('livewire.inventario.inventory-live', compact('warehouses', 'inventories', 'suppliers', 'products'));
     }
@@ -32,7 +33,8 @@ class InventoryLive extends Component
     {
         $this->resetPage();
     }
-    public function updatedWarehouseId($value){
+    public function updatedWarehouseId($value)
+    {
         $this->verLive = false;
     }
 }
