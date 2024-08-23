@@ -1,32 +1,34 @@
 @php
-function convertImageBase64($image){
-$pathImage = "./storage/fagah/".$image;
-$arrContextOptions = array(
-"ssl" => array (
-"verify_peer" => false,
-"verify_peer_name" => false
-),
-);
-$path = $pathImage;
-$type = pathinfo($path, PATHINFO_EXTENSION);
-$data = file_get_contents($path, false, stream_context_create($arrContextOptions));
-$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-return $base64;
-}
-function convertImageBase64Product($image){
-$pathImage = "./storage/".$image;
-$arrContextOptions = array(
-"ssl" => array (
-"verify_peer" => false,
-"verify_peer_name" => false
-),
-);
-$path = $pathImage;
-$type = pathinfo($path, PATHINFO_EXTENSION);
-$data = file_get_contents($path, false, stream_context_create($arrContextOptions));
-$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-return $base64;
-}
+    function convertImageBase64($image)
+    {
+        $pathImage = 'storage/'. $image;
+        $arrContextOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+        ];
+        $path = $pathImage;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path, false, stream_context_create($arrContextOptions));
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
+    }
+    function convertImageBase64Product($image)
+    {
+        $pathImage = './storage/' . $image;
+        $arrContextOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+        ];
+        $path = $pathImage;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path, false, stream_context_create($arrContextOptions));
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
+    }
 @endphp
 <!DOCTYPE html>
 <html lang="es">
@@ -43,7 +45,7 @@ return $base64;
         body {
             height: 1120px;
             width: 794px;
-            background-image: url("{{ convertImageBase64("fagahperu_fondo.jpeg") }}");
+            background-image: url("{{ convertImageBase64($line->fondo) }}");
             background-repeat: no-repeat;
             page-break-after: always;
             margin-top: -5px;
@@ -151,7 +153,7 @@ return $base64;
 
 <body>
     <div class="content">
-        <img class="logo" src="{{ convertImageBase64("fagahperu_logo.png") }}" alt="">
+        <img class="logo" src="{{ convertImageBase64($line->logo) }}" alt="">
         <div class="title">
             <h2>COTIZACIÓN</h2>
             <h4>N° 773-ISPSAC/SSP-2024</h4>
@@ -161,17 +163,17 @@ return $base64;
         </div>
         <div class="customer">
             <p>
-                <n>Señor(es):</n> {{ $cotizacion->customer->first_name }}
+                <n>Señor(es):</n> {{ $customer->first_name }}
             </p>
             <p>
-                <n>{{ $cotizacion->customer->type_code }}:</n> {{ $cotizacion->customer->code }}
+                <n>{{ $customer->type_code }}:</n> {{ $customer->code }}
             </p>
             <p>
-                <n>Dirección:</n> {{ $cotizacion->customer->address }}
+                <n>Dirección:</n> {{ $customer->address }}
             </p>
         </div>
         <div class="saludo">
-            <p>Reciba un cordial saludo en representación de la marca S SUCAMM PERU. A continuación, adjuntamos nuestras
+            <p>Reciba un cordial saludo en representación de la marca {{ $line->name }}. A continuación, adjuntamos nuestras
                 propuestas a susrequerimientos según el catálogo electrónico de PERÚ COMPRAS enmarcadas en el CONVENIO
                 EXT-CE-2023-11 MOBILIARIO ENGENERAL.</p>
             <p>Agradecemos la oportunidad de servirle y quedamos a su disposición para cualquier consulta o aclaración
@@ -187,31 +189,33 @@ return $base64;
                     <th>PRECIO UNIT.</th>
                     <th>SUB TOTAL</th>
                 </tr>
-                @forelse ($cotizacion->cotizaciondetalles as $item)
-                <tr>
-                    <td>{{ $item->product->code }}</td>
-                    <td>
-                        {{ $item->product->description }}
-                    </td>
-                    <td>{{ $item->cantidad }}</td>
-                    <td>{{ $item->price_cotizacion }}</td>
-                    <td>{{ $item->cantidad * $item->price_cotizacion }}</td>
-                </tr>
-                <tr>
-                    <td colspan="5">
-                        @php
-                            $img = $item->product->image;
-                        @endphp
-                        @if(file_exists('storage/'.$img)) 
-                            <img src="{{ convertImageBase64Product("$img") }}" alt="">
-                        @else
-                            Could not find file
-                        @endif
-                        
-                    </td>
-                </tr>
-                @empty
+                @forelse ($items as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>
+                            @php
+                                $producto = App\Models\Product::where('id', $item->id)->first();
+                            @endphp
+                            {{ $producto->description }}
+                        </td>
+                        <td>{{ $item->qty }}</td>
+                        <td>{{ $item->price }}</td>
+                        <td>{{ $item->priceTotal }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            @php
+                                $producto = App\Models\Product::where('id', $item->id)->first();
+                            @endphp
+                            @if (file_exists('storage/' . $producto->image))
+                                <img src="{{ convertImageBase64Product("$producto->image") }}" alt="">
+                            @else
+                                No image
+                            @endif
 
+                        </td>
+                    </tr>
+                @empty
                 @endforelse
 
                 <tr>
@@ -222,11 +226,31 @@ return $base64;
                 <tr>
                     <td colspan="2">
                     </td>
+                    <td colspan="2">
+                        <n style="color: white"> SUB TOTAL </n>
+                    </td>
+                    <td colspan="1">
+                        S/ {{ round($igv, 2) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    </td>
+                    <td colspan="2">
+                        <n style="color: white"> IGV </n>
+                    </td>
+                    <td colspan="1">
+                        S/ {{ round($sub_total, 2) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    </td>
                     <td style="background-color: #13065e;" colspan="2">
                         <n style="color: white"> PRECIO TOTAL INCLUIDO IGV </n>
                     </td>
                     <td colspan="1">
-                        S/ {{ $total_cotizacion }}
+                        S/ {{ $total }}
                     </td>
                 </tr>
                 <tr>

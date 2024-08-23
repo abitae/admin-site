@@ -167,17 +167,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-end pt-4 border-t border-muted">
+            <div class="flex justify-end border-t border-muted">
                 <div class="w-1/2 text-right">
-                    <div class="flex justify-between mb-2">
+                    <div class="flex justify-between ">
                         <span>Subtotal:</span>
                         <span>S/ {{ round($igv, 2) }}</span>
                     </div>
-                    <div class="flex justify-between mb-2">
+                    <div class="flex justify-between ">
                         <span>IGV:</span>
                         <span>S/ {{ round($sub_total, 2) }}</span>
                     </div>
-                    <div class="flex justify-between mb-2">
+                    <div class="flex justify-between ">
                         <span>Total:</span>
                         <span class="font-bold">S/ {{ $total }}</span>
                     </div>
@@ -185,10 +185,17 @@
             </div>
             <div class="flex justify-end pt-4 border-t border-muted">
                 <div class="w-1/2 text-right">
-                    <div class="flex justify-between mb-2">
-                        <x-button.button-save wire:click="save">
-                            GUARDAR
-                        </x-button.button-save>
+                    <div class="flex justify-between mb-2 space-x-2">
+
+                        <x-button.button-red wire:click="remove">
+                            CANCELAR
+                        </x-button.button-red>
+                        <x-select-input label='' for='line' wire:model.live='line_id'>
+                            @forelse ($lines as $line)
+                                <option value="{{ $line->id }}">{{ $line->name }}</option>
+                            @empty
+                            @endforelse
+                        </x-select-input>
                         <x-button.button-upload wire:click="exportar">
                             EXPORTAR
                         </x-button.button-upload>

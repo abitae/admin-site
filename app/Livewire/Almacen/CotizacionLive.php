@@ -20,19 +20,21 @@ class CotizacionLive extends Component
 
     public $productos_cotizados = []; //lista de productos cotizados
 
-    public $line_id; // select linea o marca
+    public $line_id = 1; // select linea o marca
     public $cotizacionNew;
     public $cantitad_detalle = 1;
     public $price_cotizacion = 0;
 
     public function mount()
     {
+        
         $this->customerSelect = Customer::first();
         $this->line_id = Line::first()->id;
     }
 
     public function render()
     {
+        //Cart::destroy();
         $items = Cart::content();
         $total = Cart::subtotal();
         $igv = (double)filter_var($total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) / 1.18;
@@ -49,6 +51,8 @@ class CotizacionLive extends Component
     public function updatedProduct()
     {
         $this->productSelect = Product::find($this->product);
+        $this->price_cotizacion = $this->productSelect->price_venta;
+
     }
     public function AddProductCotizacion()
     {
@@ -66,17 +70,25 @@ class CotizacionLive extends Component
     public function exportar()
     {
 
-        $cotizacion = $this->cotizacionNew;
-        $total_cotizacion = Cart::subtotal();
-
+        $items = Cart::content();
+        $line = Line::find($this->line_id);
+        $customer = $this->customerSelect ;
+        //dd($line);
+        $total = Cart::subtotal();
+        $igv = (double)filter_var($total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) / 1.18;
+        $sub_total = (double)filter_var($total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)  - $igv;
         $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->setPaper('a4', 'portrait')
-            ->loadView('livewire.almacen.report.cotizacion', compact('cotizacion', 'total_cotizacion'))
+            ->loadView('livewire.almacen.report.cotizacion', compact('line','customer','items', 'total', 'igv' , 'sub_total'))
             ->output();
         return response()
             ->streamDownload(
                 fn() => print($pdf),
-                "sucamm.pdf"
+                "export.pdf"
             );
+    }
+    public function remove() {
+        Cart::destroy();
+        
     }
 }

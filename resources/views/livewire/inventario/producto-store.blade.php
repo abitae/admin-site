@@ -39,7 +39,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Nuevo producto
+                                    PRODUCTOS DE INVENTARIO
                                 </span>
                             </div>
                         </li>
@@ -53,10 +53,41 @@
                         <div class="flex items-center justify-between mb-6">
                             <h1 class="text-2xl font-bold">PRODUCTOS DE INVENTARIO</h1>
                             <div class="flex gap-2">
-                                <a href="{{ route('inventario.inventory') }}"
-                                    class="inline-flex items-center justify-center px-3 text-sm font-medium text-white transition-colors bg-purple-600 border rounded-md whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-input bg-background hover:bg-accent hover:text-accent-foreground h-9">
-                                    Nuevo producto
-                                </a>
+                                <x-button.button-pluss-purple wire:click="create">
+                                    Create producto
+                                </x-button.button-pluss-purple>
+                                @if ($isOpenModal)
+                                    <x-modal title="{{ isset($productForm->product) ? 'Update product' : 'Create product' }}"
+                                        maxWidth='sm'>
+                                        <form class="form"
+                                            wire:submit="{{ isset($productForm->product) ? 'updateProduct' : 'createProduct' }}">
+                                            <div class="p-4 space-y-4 md:p-5">
+                                                <div class="grid grid-cols-6 gap-6">
+                                                    <div class="col-span-6 sm:col-span-6">
+                                                        <x-text-input wire:model.live='productForm.code_entrada' type='text'
+                                                            for='code_entrada' label='Codigo'
+                                                            placeholder='Ingrese codigo' />
+                                                        @error('productForm.code_entrada')
+                                                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                                                    class="font-medium">Error!</span> {{ $message }}.
+                                                            </p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="flex items-center p-4 border-t border-gray-200 rounded-b md:p-5 dark:border-gray-600">
+                                                <x-button.button-danger type="button"
+                                                    wire:click="$toggle('isOpenModal')">
+                                                    Cancel
+                                                </x-button.button-danger>
+                                                <x-button.button-save type='submit'>
+                                                    Guardar
+                                                </x-button.button-save>
+                                            </div>
+                                        </form>
+                                    </x-modal>
+                                @endif
                             </div>
                         </div>
                         <div class="overflow-x-auto">
@@ -78,11 +109,10 @@
                                                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                                 </svg>
                                             </div>
-                                            <input type="search" id="default-search"
+                                            <input type="search" id="default-search" wire:model.live='search'
                                                 class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Buscar codigo entrada" required />
-                                            <button type="submit"
-                                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+
                                         </div>
                                     </form>
                                     <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
@@ -120,7 +150,7 @@
                                                         @forelse ($item->codexits as $codexit)
                                                             <option value="{{ $codexit->id }}">
                                                                 {{ $codexit->name }}
-                                                                </option>
+                                                            </option>
                                                         @empty
                                                         @endforelse
                                                     </td>
@@ -136,7 +166,8 @@
                                                         </button>
                                                     </td>
                                                     <td class="p-4 space-x-2 whitespace-nowrap">
-                                                        <x-button.button-edit wire:click='update({{ $item->id }})'>
+                                                        <x-button.button-edit
+                                                            wire:click='update({{ $item->id }})'>
                                                         </x-button.button-edit>
                                                         <x-button.button-delete
                                                             wire:click='delete({{ $item->id }})'
