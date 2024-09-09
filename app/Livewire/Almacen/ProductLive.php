@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Almacen;
 
+use App\Exports\ProductsExport;
 use App\Livewire\Forms\ProductForm;
 use App\Models\Brand;
 use App\Models\Category;
@@ -15,6 +16,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductLive extends Component
 {
@@ -24,6 +26,7 @@ class ProductLive extends Component
     public ProductForm $productForm;
     public $search = '';
     public $num = 10;
+    public $isActive = true;
     public $isOpenModal = false;
     public $isOpenModalExport = false;
 
@@ -68,6 +71,7 @@ class ProductLive extends Component
             ->when($this->stockFilter, function ($query) {
                 $query->where('stock', '>=', $this->stockFilter);
             })
+            ->where('isActive', $this->isActive)
             ->paginate($this->num, '*', 'page');
     }
     public function render()
@@ -118,6 +122,7 @@ class ProductLive extends Component
             $this->message('error', 'Error!', 'Verifique los datos ingresados!');
         }
     }
+
     public function exportProduct()
     {
         $this->isOpenModalExport = false;
@@ -151,15 +156,6 @@ class ProductLive extends Component
     }
     public function export()
     {
-        $users = User::all();
-        $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
-            ->setPaper('a4', 'portrait')
-            ->loadView('livewire.almacen.report.cotizacion')
-            ->output();
-        return response()
-            ->streamDownload(
-                fn() => print($pdf),
-                "sucamm.pdf"
-            );
+        return Excel::download(new ProductsExport, 'product.xlsx');
     }
 }

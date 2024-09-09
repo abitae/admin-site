@@ -64,12 +64,7 @@
                     <x-button.button-pluss-purple wire:click="create">
                         Create
                     </x-button.button-pluss-purple>
-                    <x-button.button-download>
-                        Export
-                    </x-button.button-download>
-                    <x-button.button-upload>
-                        Import
-                    </x-button.button-upload>
+
                     @include('livewire.almacen.line-modal')
                 </div>
             </div>

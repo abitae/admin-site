@@ -17,6 +17,7 @@ use App\Livewire\Almacen\ProductLive;
 use App\Livewire\Almacen\CotizacionLive;
 use App\Livewire\Crm\DetailNegocioLive;
 use App\Livewire\Crm\NegocioLive;
+use App\Livewire\Crm\SupplierLive;
 use App\Livewire\Inventario\EntryLive;
 use App\Livewire\Inventario\ExitLive;
 use App\Livewire\Inventario\InventoryLive;
@@ -61,6 +62,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::get('/customers', CustomerLive::class)->name('crm.customers');
+    Route::get('/suppliers', SupplierLive::class)->name('crm.suppliers');
     Route::get('/contacts', ContactLive::class)->name('crm.contacts');
     Route::get('/negocios', NegocioLive::class)->name('crm.negocios');
     Route::get('/detailcrm/{id}', DetailNegocioLive::class)->name('crm.detail');

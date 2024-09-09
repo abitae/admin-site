@@ -86,9 +86,9 @@
                         </x-area-input>
                     </div>
                     <div class="col-span-6 sm:col-full">
-                        <x-primary-button type='submit'>
+                        <x-button.button-save type='submit'>
                             Guardar
-                        </x-primary-button>
+                        </x-button.button-save>
                     </div>
                 </div>
             </div>

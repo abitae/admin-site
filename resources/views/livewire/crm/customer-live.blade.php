@@ -39,14 +39,14 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Users
+                                    Clientes
                                 </span>
                             </div>
                         </li>
                     </ol>
                 </nav>
                 <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                    All customers
+                    Clientes
                 </h1>
             </div>
             <div class="sm:flex">
@@ -63,12 +63,9 @@
                     <x-button.button-pluss-purple wire:click="create">
                         Create
                     </x-button.button-pluss-purple>
-                    <x-button.button-download>
+                    <x-button.button-download wire:click='export'>
                         Export
                     </x-button.button-download>
-                    <x-button.button-upload>
-                        Import
-                    </x-button.button-upload>
                     @include('livewire.crm.customer-modal')
                 </div>
             </div>

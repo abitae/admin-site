@@ -12,11 +12,10 @@ class Customer extends Model
         'type_code',
         'code',
         'first_name',
-        'last_name',
-        'date_brinday',
         'phone',
         'email',
         'address',
+        'archivo',
         'isActive',
     ];
     public function negocios()

@@ -191,7 +191,7 @@
                 </tr>
                 @forelse ($items as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->name }}</td>
                         <td>
                             @php
                                 $producto = App\Models\Product::where('id', $item->id)->first();

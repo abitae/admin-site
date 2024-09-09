@@ -1,6 +1,6 @@
 <div>
     <div
-        class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+        class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div class="w-full mb-1">
             <div class="mb-4">
                 <nav class="flex mb-5" aria-label="Breadcrumb">
@@ -26,7 +26,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Config
+                                    CRM
                                 </span>
                             </div>
                         </li>
@@ -39,86 +39,37 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Users
+                                    Proveedores
                                 </span>
                             </div>
                         </li>
                     </ol>
                 </nav>
                 <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                    Productos
+                    Proveedores
                 </h1>
             </div>
             <div class="sm:flex">
                 <div
                     class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+                    <label for="suppliers-search" class="sr-only">Search</label>
                     <div class="relative mt-1 lg:w-64 xl:w-96">
                         <input type="text" wire:model.live='search'
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Search for products">
+                            placeholder="Search for suppliers">
                     </div>
-
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                     <x-button.button-pluss-purple wire:click="create">
                         Create
                     </x-button.button-pluss-purple>
-                    <x-button.button-download wire:click="export">
+                    <x-button.button-download wire:click='export'>
                         Export
                     </x-button.button-download>
-                    @include('livewire.almacen.product-modal')
+                    @include('livewire.crm.supplier-modal')
                 </div>
             </div>
         </div>
     </div>
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-2 dark:bg-gray-800">
-        <div class="items-center sm:flex">
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <x-select-input wire:model.live.debounce.200ms="lineFilter" for='rol' label=''>
-                        <option>*Lineas</option>
-                        @forelse ($this->lines as $line)
-                            <option value="{{ $line->id }}">{{ $line->name }}</option>
-                        @empty
-                        @endforelse
-                    </x-select-input>
-                </div>
-                <div class="relative">
-                    <x-select-input wire:model.live.debounce.200ms="categoryFilter" for='rol' label=''>
-                        <option>*Categorias</option>
-                        @forelse ($this->categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @empty
-                        @endforelse
-                    </x-select-input>
-                </div>
-                <div class="relative">
-                    <x-select-input wire:model.live.debounce.200ms="brandFilter" for='rol' label=' '>
-                        <option>*Marcas</option>
-                        @forelse ($this->brands as $brand)
-                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                        @empty
-                        @endforelse
-                    </x-select-input>
-                </div>
-                <div class="relative">
-                    <x-select-input wire:model.live.debounce.200ms="num" for='rol' label=' '>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="1000">1000</option>
-                    </x-select-input>
-                </div>
-                <div class="relative">
-                    <x-select-input wire:model.live.debounce.200ms="isActive" for='rol' label=' '>
-                        <option>*Activo</option>
-                        <option value="1">SI</option>
-                        <option value="0">No</option>
-                    </x-select-input>
-                </div>
-            </div>
-        </div>
-    </div>
-    @include('livewire.almacen.product-table')
+    @include('livewire.crm.supplier-table')
 </div>

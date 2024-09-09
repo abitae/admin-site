@@ -18,20 +18,7 @@
                             </a>
                         </li>
                         <li>
-                            <div class="flex items-center">
-                                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Convenio Marco
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="{{ route('convenio.data') }}"
+                            <a href="{{ route('almacen.cotizaciones') }}"
                                 class="flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
                                 <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +26,7 @@
                                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                Ordenes
+                                Cotizacion
                             </a>
                         </li>
                         <li>
@@ -51,7 +38,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    Detalle orden
+                                    Detalle cotizacion
                                 </span>
                             </div>
                         </li>
@@ -111,10 +98,9 @@
                                 <tr wire:key='det-{{ $item->id }}'>
                                     <td class="py-2">
                                         <x-button.button-delete wire:click="delete('{{ $item->rowId }}')">
-
                                         </x-button.button-delete>
                                     </td>
-                                    <td class="py-2">{{ $item->rowId }}</td>
+                                    <td class="py-2">{{ $item->name }}</td>
                                     <td class="py-2 text-right">{{ $item->qty }}</td>
                                     <td class="py-2 text-right">{{ $item->price }}</td>
                                     <td class="py-2 text-right">{{ $item->priceTotal }}</td>
@@ -129,7 +115,7 @@
                         @else
                             <tr>
                                 <td>
-                                    No hay registros hols
+                                    No hay registros
                                 </td>
                             </tr>
                         @endisset
@@ -201,6 +187,25 @@
                         </x-button.button-upload>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="max-w-3xl p-8 mx-auto rounded-lg shadow-lg bg-background text-card-foreground dark:text-white">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold">CONDICIONES</h1>
+                </div>
+                <div class="text-right">   
+                    @isset($customerSelect)
+                        <p>Forma de pago : {{ $customerSelect->code }}</p>
+                        <p>Tiempo de entrega : {{ $customerSelect->first_name }}</p>
+                        <p>Validez de la cotización: {{ $customerSelect->email }}</p>
+                        <p>Email: {{ $customerSelect->phone }}</p>
+                    @endisset
+                </div>
+            </div>
+            <div class="pt-4 mb-6 border-t border-muted">
+
             </div>
         </div>
     </div>

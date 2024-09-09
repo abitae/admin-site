@@ -17,14 +17,13 @@ class SupplierFactory extends Factory
     public function definition(): array
     {
         return [
-            'type_code' => $this->faker->randomElement(['DNI', 'RUC']),
+            'type_code' => $this->faker->randomElement(['dni', 'ruc']),
             'code' => $this->faker->randomNumber(8, false),
             'first_name' => $this->faker->name(),
-            'last_name' => $this->faker->name(),
-            'date_brinday' => $this->faker->date('Y-m-d', 'now'),
             'phone' => $this->faker->tollFreePhoneNumber,
             'email' => $this->faker->email,
             'address' => $this->faker->address,
+            'archivo' => '',
             'isActive' => true,
         ];
     }

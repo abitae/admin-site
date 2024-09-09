@@ -39,7 +39,7 @@ function buscar_documento_h($tipo, $num_doc)
         $resp['respuesta'] = 'error';
         $resp['titulo'] = 'Error';
         $resp['mensaje'] = 'Tipo de Documento Desconocido';
-        return $resp;
+        return collect($resp);
     }
 
     $curl = curl_init();

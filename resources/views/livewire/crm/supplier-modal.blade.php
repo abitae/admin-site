@@ -1,10 +1,10 @@
 @if ($isOpenModal)
-    <x-modal title="{{ isset($customerForm->customer) ? 'Update customer' : 'Create customer' }}" maxWidth='2xl'>
-        <form class="form" wire:submit="{{ isset($customerForm->customer) ? 'updateCustomer' : 'createCustomer' }}">
+    <x-modal title="{{ isset($supplierForm->supplier) ? 'Update supplier' : 'Create supplier' }}" maxWidth='2xl'>
+        <form class="form" wire:submit="{{ isset($supplierForm->supplier) ? 'updateCustomer' : 'createCustomer' }}">
             <div class="p-4 space-y-4 md:p-5">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-2">
-                        <x-select-input wire:model.live="customerForm.type_code" for='rol' label='Tipo documento'>
+                        <x-select-input wire:model.live="supplierForm.type_code" for='rol' label='Tipo documento'>
                             <option>*Select option</option>
                             <option value="dni">DNI</option>
                             <option value="ruc">RUC</option>
@@ -19,14 +19,14 @@
                         <div class="max-w-md mx-auto">
                             <div class="relative">
                                 <x-text-input type="text" label='Numero de documento' for="code" id="code"
-                                    wire:model.live='customerForm.code'
+                                    wire:model.live='supplierForm.code'
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="DNI / RUC" required />
                                 <button wire:click='buscarDocumento' type='button'
                                     class="text-white absolute end-2.5 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
                             </div>
                         </div>
-                        @error('customerForm.code')
+                        @error('supplierForm.code')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error!</span>
                                 {{ $message }}.</p>
                         @enderror
@@ -35,9 +35,9 @@
                 </div>
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-6">
-                        <x-text-input wire:model.live='customerForm.first_name' type='text' for='first_name'
+                        <x-text-input wire:model.live='supplierForm.first_name' type='text' for='first_name'
                             label='Denominacion' placeholder='Ingrese nombres' />
-                        @error('customerForm.first_name')
+                        @error('supplierForm.first_name')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error!</span>
                                 {{ $message }}.</p>
                         @enderror
@@ -45,17 +45,17 @@
                 </div>
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
-                        <x-text-input wire:model.live='customerForm.phone' type='text' for='phone'
+                        <x-text-input wire:model.live='supplierForm.phone' type='text' for='phone'
                             label='Telefono' placeholder='Ingrese telefono' />
-                        @error('customerForm.phone')
+                        @error('supplierForm.phone')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error!</span>
                                 {{ $message }}.</p>
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <x-text-input wire:model.live='customerForm.email' type='email' for='email' label='Email'
+                        <x-text-input wire:model.live='supplierForm.email' type='email' for='email' label='Email'
                             placeholder='Ingrese email' />
-                        @error('customerForm.email')
+                        @error('supplierForm.email')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error!</span>
                                 {{ $message }}.</p>
                         @enderror
@@ -63,9 +63,9 @@
                 </div>
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-6">
-                        <x-text-input wire:model.live='customerForm.address' type='text' for='address'
+                        <x-text-input wire:model.live='supplierForm.address' type='text' for='address'
                             label='Direccion' placeholder='Ingrese address' />
-                        @error('customerForm.address')
+                        @error('supplierForm.address')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error!</span>
                                 {{ $message }}.</p>
                         @enderror
@@ -89,7 +89,7 @@
                                 </p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">PDF</p>
                             </div>
-                            <input wire:model.live='customerForm.archivo' id="archivo" type="file" class="hidden" />
+                            <input wire:model.live='supplierForm.archivo' id="archivo" type="file" class="hidden" />
                         </label>
                     </div>
                 </div>

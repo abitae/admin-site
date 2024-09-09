@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Crm;
 
-use App\Exports\CustomersExport;
-use App\Livewire\Forms\CustomerForm;
-use App\Models\Customer;
+use App\Exports\SuppliersExport;
+use App\Livewire\Forms\SupplierForm;
+use App\Models\Supplier;
 use Carbon\Carbon;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -16,12 +16,12 @@ use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
-class CustomerLive extends Component
+class SupplierLive extends Component
 {
     use WithPagination, WithoutUrlPagination;
     use LivewireAlert;
     use WithFileUploads;
-    public CustomerForm $customerForm;
+    public SupplierForm $supplierForm;
     public $search = '';
     public $num = 10;
     public $isOpenModal = false;
@@ -34,10 +34,10 @@ class CustomerLive extends Component
         $this->dateNow = Carbon::now('GMT-5')->format('Y-m-d');
     }
     #[Computed]
-    public function customers()
+    public function suppliers()
     {
 
-        return Customer::where(
+        return Supplier::where(
             fn($query)
             => $query->orWhere('code', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('first_name', 'LIKE', '%' . $this->search . '%')
@@ -47,37 +47,37 @@ class CustomerLive extends Component
     }
     public function render()
     {
-        return view('livewire.crm.customer-live');
+        return view('livewire.crm.supplier-live');
     }
     public function create()
     {
-        $this->customerForm->reset();
+        $this->supplierForm->reset();
         $this->isOpenModal = true;
     }
-    public function update(Customer $customer)
+    public function update(Supplier $supplier)
     {
-        $this->customerForm->setCustomer($customer);
+        $this->supplierForm->setSupplier($supplier);
         $this->isOpenModal = true;
     }
-    public function delete(Customer $customer)
+    public function delete(Supplier $supplier)
     {
-        if ($this->customerForm->destroy($customer->id)) {
+        if ($this->supplierForm->destroy($supplier->id)) {
             $this->message('success', 'En hora buena!', 'Registro eliminado correctamente!');
         } else {
             $this->message('error', 'Error!', 'No se pudo eliminar el registro!');
         }
     }
-    public function estado(Customer $customer)
+    public function estado(Supplier $supplier)
     {
-        if ($this->customerForm->estado($customer->id)) {
+        if ($this->supplierForm->estado($supplier->id)) {
             $this->message('success', 'En hora buena!', 'Registro actualiza correctamente!');
         } else {
             $this->message('error', 'Error!', 'No se pudo actualizar el registro!');
         }
     }
-    public function createCustomer()
+    public function createSupplier()
     {
-        if ($this->customerForm->store()) {
+        if ($this->supplierForm->store()) {
             $this->message('success', 'En hora buena!', 'Registro creado correctamente!');
             $this->isOpenModal = false;
         } else {
@@ -86,16 +86,16 @@ class CustomerLive extends Component
     }
     public function buscarDocumento()
     {
-        $data = buscar_documento_h($this->customerForm->type_code, $this->customerForm->code);
+        $data = buscar_documento_h($this->supplierForm->type_code, $this->supplierForm->code);
         try {
 
             //dd($data);
             if ($data['respuesta'] == 'ok') {
-                if ($this->customerForm->type_code == 'dni') {
-                    $this->customerForm->first_name = $data['data']->nombre;
+                if ($this->supplierForm->type_code == 'dni') {
+                    $this->supplierForm->first_name = $data['data']->nombre;
                 } else {
-                    $this->customerForm->first_name = $data['data']->razon_social;
-                    $this->customerForm->address = $data['data']->direccion;
+                    $this->supplierForm->first_name = $data['data']->razon_social;
+                    $this->supplierForm->address = $data['data']->direccion;
                 }
                 $this->message('success', 'En hora buena!', 'Documento encontrado correctamente!');
             } else {
@@ -105,19 +105,19 @@ class CustomerLive extends Component
             $this->message('error', 'Fatal!', $data['data_resp']);
         }
     }
-    public function updateCustomer()
+    public function updateSupplier()
     {
-        if ($this->customerForm->update()) {
+        if ($this->supplierForm->update()) {
             $this->message('success', 'En hora buena!', 'Registro actualizado correctamente!');
             $this->isOpenModal = false;
         } else {
             $this->message('error', 'Error!', 'Verifique los datos ingresados!');
         }
     }
-    public function exportCustomer()
+    public function exportSupplier()
     {
         $this->isOpenModalExport = false;
-        return $this->customerForm->export();
+        return $this->supplierForm->export();
     }
     public function updatedSearch($value)
     {
@@ -125,7 +125,7 @@ class CustomerLive extends Component
     }
     public function export()
     {
-        return Excel::download(new CustomersExport, 'customers.xlsx');
+        return Excel::download(new SuppliersExport, 'suppliers.xlsx');
     }
     private function message($tipo, $tittle, $message)
     {
@@ -137,9 +137,9 @@ class CustomerLive extends Component
             'timerProgressBar' => true,
         ]);
     }
-    public function pdf(Customer $customer)
+    public function pdf(Supplier $supplier)
     {
-        dd(Storage::download($customer->archivo));
-       return Storage::download($customer->archivo);
+        //dd($supplier->archivo);
+       return Storage::download($supplier->archivo);
     }
 }
