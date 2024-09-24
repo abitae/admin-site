@@ -8,8 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Line;
 use App\Models\Product;
-use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Computed;
 use Livewire\Component;

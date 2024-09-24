@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Exports\ProductStoresExport;
+use App\Models\CodeExit;
 use App\Models\ProductStore;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -56,6 +57,18 @@ class ProductStoreForm extends Form
             $product = ProductStore::find($id);
             $product->delete();
             infoLog('ProductStore deleted', $product->code_entrada);
+            return true;
+        } catch (\Exception $e) {
+            errorLog('ProductStore deleted', $e);
+            return false;
+        }
+    }
+    public function destroyExit($id)
+    {
+        try {
+            $codeExit = CodeExit::find($id);
+            $codeExit->delete();
+            infoLog('ProductStore deleted', $codeExit->name);
             return true;
         } catch (\Exception $e) {
             errorLog('ProductStore deleted', $e);

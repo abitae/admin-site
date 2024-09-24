@@ -21,6 +21,9 @@ class LineFactory extends Factory
             'name' => $this->faker->name(),
             'logo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
             'fondo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
+            'firma_autorizacion' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
+            'fondo_autorizacion' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
+            'fondo_rotulo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
             'archivo' => $this->faker->imageUrl(360, 360, 'animals', true, 'cats'),
             'isActive' => true,
         ];

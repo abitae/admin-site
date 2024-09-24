@@ -39,7 +39,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">
-                                    PRODUCTOS DE INVENTARIO
+                                    Movimientos
                                 </span>
                             </div>
                         </li>
@@ -51,19 +51,12 @@
                 <div class="relative w-full align-middle">
                     <div class="p-6 rounded-lg shadow-lg bg-background text-foreground">
                         <div class="flex items-center justify-between mb-6">
-                            <h1 class="text-2xl font-bold">PRODUCTOS DE INVENTARIO</h1>
-                            <div class="flex gap-2">
-                                <x-button.button-pluss-purple wire:click="create">
-                                    Create producto
-                                </x-button.button-pluss-purple>
-
-                            </div>
+                            <h1 class="text-2xl font-bold">Movimiento de productos</h1>
                         </div>
                         <div class="overflow-x-auto">
                             <div class="w-full">
                                 <div
                                     class="space-y-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-                                    <h1>CODIGO DE ENTRADA</h1>
                                     <form class="max-w-full mx-auto">
                                         <label for="default-search"
                                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -89,73 +82,115 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                                    Code
+                                                    Almacen/Code/Stock
                                                 </th>
                                                 <th scope="col"
                                                     class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                                    Codes
+                                                    Entradas
                                                 </th>
                                                 <th scope="col"
                                                     class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                                    Status
-                                                </th>
-                                                <th scope="col"
-                                                    class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                                    Actions
+                                                    Salidad
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody
                                             class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                            @forelse ($products as $item)
+                                            @forelse ($inventories as $item)
                                                 <tr wire:key='productStore-{{ $item->id }}'
                                                     class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                     <td
                                                         class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                                        {{ $item->code_entrada }}
-                                                    </td>
-                                                    <td
-                                                        class="p-4 text-xs font-normal text-gray-500 dark:text-gray-400">
-                                                        @forelse ($item->codexits as $codexit)
-                                                            <p>
-                                                                {{ $codexit->name }}
-                                                                <x-button.button-delete
-                                                                    wire:click='deleteExit({{ $codexit->id }})'
-                                                                    wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $codexit->name }}' para confirmar!|{{ $codexit->name }}">
-                                                                </x-button.button-delete>
-                                                            </p>
-                                                        @empty
-                                                        @endforelse
-                                                    </td>
-                                                    <td
-                                                        class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                                        <button wire:click='estado({{ $item->id }})'
-                                                            wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba 'SI' para confirmar!|SI"
-                                                            class="flex items-center">
-                                                            <div
-                                                                class="h-2.5 w-2.5 rounded-full {{ $item->isActive ? 'bg-green-400' : 'bg-red-600' }} mr-2">
-                                                            </div>
-                                                            {{ $item->isActive ? 'Active' : 'Disabled' }}
-                                                        </button>
-                                                    </td>
-                                                    <td class="p-4 space-x-2 whitespace-nowrap">
-                                                        <x-button.button-pdf
-                                                            wire:click='addCodeExit({{ $item->id }})'>
-                                                        </x-button.button-pdf>
+                                                        <p>{{ $item->warehouse->name }}</p>
+                                                        <p>{{ $item->product->code_entrada }}</p>
+                                                        <p>{{ $item->quantity }}</p>
 
-                                                        <x-button.button-edit wire:click='update({{ $item->id }})'>
-                                                        </x-button.button-edit>
-                                                        <x-button.button-delete
-                                                            wire:click='delete({{ $item->id }})'
-                                                            wire:confirm.prompt="Estas seguro de eliminar registro?\n\nEscriba '{{ $item->code_entrada }}' para confirmar!|{{ $item->code_entrada }}">
-                                                        </x-button.button-delete>
+                                                    </td>
+                                                    <td
+                                                        class="text-xs font-normal text-gray-500 bg-green-200 dark:text-gray-400">
+
+                                                        <table
+                                                            class='max-w-full text-left divide-y divide-gray-200 table-fixed dark:divide-gray-600'>
+                                                            <thead>
+                                                                <th>
+                                                                    Proveedor
+                                                                </th>
+                                                                <th>
+                                                                    Cantidad
+                                                                </th>
+                                                                <th>
+                                                                    Fecha
+                                                                </th>
+                                                            </thead>
+                                                            <tbody>
+                                                                @forelse($item->entries as $entry)
+                                                                    <tr>
+                                                                        <td
+                                                                            class="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                                            {{ $entry->supplier->first_name }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                                            {{ $entry->quantity }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                                            {{ $entry->created_at->format('d/m/Y') }}
+                                                                        </td>
+                                                                    </tr>
+                                                                @empty
+                                                                    No hay datos
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+
+
+                                                    </td>
+                                                    <td
+                                                        class="text-xs font-normal text-gray-500 bg-red-200 dark:text-gray-400">
+
+                                                        <table
+                                                            class='max-w-full text-left divide-y divide-gray-200 table-fixed dark:divide-gray-600'>
+                                                            <thead>
+                                                                <th>
+                                                                    Cliente
+                                                                </th>
+                                                                <th>
+                                                                    Cantidad
+                                                                </th>
+                                                                <th>
+                                                                    Fecha
+                                                                </th>
+                                                            </thead>
+                                                            <tbody>
+                                                                @forelse($item->exits as $exit)
+                                                                    <tr>
+                                                                        <td
+                                                                            class="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                                            {{ $exit->customer->first_name }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                                            {{ $exit->quantity }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                                                            {{ $exit->created_at->format('d/m/Y') }}
+                                                                        </td>
+                                                                    </tr>
+                                                                @empty
+                                                                    No hay datos
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+
                                                     </td>
                                                 </tr>
                                             @empty
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    {{ $products->links(data: ['scrollTo' => false]) }}
+                                    {{ $inventories->links(data: ['scrollTo' => false]) }}
                                 </div>
                             </div>
                         </div>
@@ -164,59 +199,5 @@
             </div>
         </div>
     </div>
-    @if ($isOpenModal)
-        <x-modal title="{{ isset($productForm->product) ? 'Update product' : 'Create product' }}" maxWidth='sm'>
-            <form class="form" wire:submit="{{ isset($productForm->product) ? 'updateProduct' : 'createProduct' }}">
-                <div class="p-4 space-y-4 md:p-5">
-                    <div class="grid grid-cols-6 gap-6">
-                        <div class="col-span-6 sm:col-span-6">
-                            <x-text-input wire:model.live='productForm.code_entrada' type='text' for='code_entrada'
-                                label='Codigo' placeholder='Ingrese codigo' />
-                            @error('productForm.code_entrada')
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                        class="font-medium">Error!</span> {{ $message }}.
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center p-4 border-t border-gray-200 rounded-b md:p-5 dark:border-gray-600">
-                    <x-button.button-danger type="button" wire:click="$toggle('isOpenModal')">
-                        Cancel
-                    </x-button.button-danger>
-                    <x-button.button-save type='submit'>
-                        Guardar
-                    </x-button.button-save>
-                </div>
-            </form>
-        </x-modal>
-    @endif
-    @if ($isOpenModalExit)
-        <x-modal title="Crear codigo de salida" maxWidth='sm'>
-            <form class="form" wire:submit="createCodeExit">
-                <div class="p-4 space-y-4 md:p-5">
-                    <div class="grid grid-cols-6 gap-6">
-                        <div class="col-span-6 sm:col-span-6">
-                            <x-text-input wire:model.live='codeExitForm.name' type='text' for='name'
-                                label='Codigo salida' placeholder='Ingrese codigo' />
-                            @error('codeExitForm.name')
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                                    <span class="font-medium">Error!</span>
-                                    {{ $message }}.
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center p-4 border-t border-gray-200 rounded-b md:p-5 dark:border-gray-600">
-                    <x-button.button-danger type="button" wire:click="$toggle('isOpenModalExit')">
-                        Cancel
-                    </x-button.button-danger>
-                    <x-button.button-save type='submit'>
-                        Guardar
-                    </x-button.button-save>
-                </div>
-            </form>
-        </x-modal>
-    @endif
+
 </div>

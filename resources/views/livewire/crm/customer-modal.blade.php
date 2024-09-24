@@ -89,7 +89,8 @@
                                 </p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">PDF</p>
                             </div>
-                            <input wire:model.live='customerForm.archivo' id="archivo" type="file" class="hidden" />
+                            <input wire:model.live='customerForm.archivo' id="archivo" type="file"
+                                class="hidden" />
                         </label>
                     </div>
                 </div>
@@ -104,4 +105,36 @@
             </div>
         </form>
     </x-modal>
+@endif
+@if ($isOpenModalAutorization)
+    <x-modal2 title="Generar carta de distribuidor" maxWidth='md'>
+        <form class="form" wire:submit="getAutorization">
+            <div class="p-4 space-y-4 md:p-5">
+                <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6">
+                        <x-select-input wire:model.live="line_atutorization" for='rol' label='Linea'>
+                            @forelse($lines as $line)
+                                <option value={{ $line->id }}>{{ $line->name }}</option>
+                            @empty
+                                <p>No hay usuarios.</p>
+                            @endforelse
+                        </x-select-input>
+                        @error('userForm.type_code')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Error!</span>
+                                {{ $message }}.</p>
+                        @enderror
+                    </div>
+                </div>
+                
+            </div>
+            <div class="flex items-center p-4 border-t border-gray-200 rounded-b md:p-5 dark:border-gray-600">
+                <x-button.button-danger type="button" wire:click="$toggle('isOpenModalAutorization')">
+                    Cancel
+                </x-button.button-danger>
+                <x-button.button-save type='submit'>
+                    Generar
+                </x-button.button-save>
+            </div>
+        </form>
+    </x-modal2>
 @endif

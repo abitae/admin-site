@@ -181,7 +181,12 @@
                     <li>
                         <a href="{{ route('inventario.inventory') }}"
                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            Kardex</a>
+                            Inventario</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('inventario.movimientos') }}"
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Movimientos</a>
                     </li>
                     <li>
                         <a href="{{ route('inventario.warehouses') }}"

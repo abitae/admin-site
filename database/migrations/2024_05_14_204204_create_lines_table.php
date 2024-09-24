@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('logo');
             $table->string('fondo');
+            $table->string('firma_autorizacion');
+            $table->string('fondo_autorizacion');
+            $table->string('fondo_rotulo');
             $table->string('archivo');
             $table->boolean('isActive')->default(true);
             $table->timestamps();

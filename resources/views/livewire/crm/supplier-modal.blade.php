@@ -1,6 +1,6 @@
 @if ($isOpenModal)
     <x-modal title="{{ isset($supplierForm->supplier) ? 'Update supplier' : 'Create supplier' }}" maxWidth='2xl'>
-        <form class="form" wire:submit="{{ isset($supplierForm->supplier) ? 'updateCustomer' : 'createCustomer' }}">
+        <form class="form" wire:submit="{{ isset($supplierForm->supplier) ? 'updateSupplier' : 'createSupplier' }}">
             <div class="p-4 space-y-4 md:p-5">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-2">

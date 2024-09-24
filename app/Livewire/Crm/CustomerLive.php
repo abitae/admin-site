@@ -5,6 +5,8 @@ namespace App\Livewire\Crm;
 use App\Exports\CustomersExport;
 use App\Livewire\Forms\CustomerForm;
 use App\Models\Customer;
+use App\Models\Line;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -26,9 +28,10 @@ class CustomerLive extends Component
     public $num = 10;
     public $isOpenModal = false;
     public $isOpenModalExport = false;
-
+    public $isOpenModalAutorization = false;
     public $dateNow;
 
+    public $line_atutorization = 1;
     public function mount()
     {
         $this->dateNow = Carbon::now('GMT-5')->format('Y-m-d');
@@ -47,7 +50,8 @@ class CustomerLive extends Component
     }
     public function render()
     {
-        return view('livewire.crm.customer-live');
+        $lines = Line::where('isActive', true)->get();
+        return view('livewire.crm.customer-live', compact('lines'));
     }
     public function create()
     {
@@ -139,7 +143,32 @@ class CustomerLive extends Component
     }
     public function pdf(Customer $customer)
     {
-        dd(Storage::download($customer->archivo));
-       return Storage::download($customer->archivo);
+        //dd($customer->archivo);
+        if (Storage::disk('public')->exists($customer->archivo) && $customer->archivo != '') {
+            return Storage::download($customer->archivo);
+        } else {
+            $this->message('error', 'Error!', 'El archivo no existe!');
+        }
+    }
+    public function getAutorizationModal(Customer $customer)
+    {
+        $this->customerForm->setCustomer($customer);
+        $this->isOpenModalAutorization = true;
+    }
+    public function getAutorization()
+    {
+        $fecha = \Carbon\Carbon::now()->locale("es_PE")->isoFormat('D \d\e MMMM \d\e\l Y');
+        
+        $line = Line::find($this->line_atutorization);
+        $customer = $this->customerForm->customer;
+        $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+            ->setPaper('a4', 'portrait')
+            ->loadView('livewire.almacen.report.autorization', compact('line', 'customer','fecha'))
+            ->output();
+        return response()
+            ->streamDownload(
+                fn() => print($pdf),
+                "autorizacion.pdf"
+            );
     }
 }

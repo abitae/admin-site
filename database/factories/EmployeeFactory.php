@@ -22,7 +22,7 @@ class EmployeeFactory extends Factory
             'first_name' => $this->faker->name(),
             'last_name' => $this->faker->name(),
             'date_brinday' => $this->faker->date('Y-m-d', 'now'),
-            'phone' => $this->faker->tollFreePhoneNumber,
+            'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->email,
             'address' => $this->faker->address,
         ];

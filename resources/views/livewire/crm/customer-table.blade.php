@@ -63,6 +63,8 @@
                                 </button>
                             </td>
                             <td class="p-4 space-x-2 whitespace-nowrap">
+                                <x-button.button-download2 wire:click='getAutorizationModal({{ $customer->id }})'>
+                                </x-button.button-download2>
                                 <x-button.button-pdf wire:click='pdf({{ $customer->id }})'>
                                 </x-button.button-pdf>
                                 <x-button.button-edit wire:click='update({{ $customer->id }})'>

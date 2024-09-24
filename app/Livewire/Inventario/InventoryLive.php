@@ -27,7 +27,7 @@ class InventoryLive extends Component
                 $q->where('code_entrada', 'LIKE', '%' . $this->search . '%');
             })
             ->paginate(10);
-        return view('livewire.inventario.inventory-live', compact('warehouses', 'inventories', 'suppliers', 'products'));
+        return view('livewire.inventario.inventory-live', compact('warehouses', 'inventories'));
     }
     public function updatedSearch($value)
     {

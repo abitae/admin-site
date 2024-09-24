@@ -45,6 +45,8 @@ class ProductForm extends Form
     public $image = '';
     #[Validate('nullable|sometimes|mimes:pdf|max:10960|extensions:pdf')] // 1MB Max
     public $archivo = '';
+    #[Validate('nullable|sometimes|mimes:pdf|max:10960|extensions:pdf')] // 1MB Max
+    public $archivo2 = '';
     public $isActive = false;
     public function setProduct(Product $product)
     {
@@ -67,6 +69,7 @@ class ProductForm extends Form
         $this->observaciones = $product->observaciones;
         $this->image = $product->image;
         $this->archivo = $product->archivo;
+        $this->archivo2 = $product->archivo2;
     }
     public function store()
     {
@@ -78,6 +81,9 @@ class ProductForm extends Form
             }
             if (gettype($this->archivo) != 'string') {
                 $this->archivo = $this->archivo->store('product/pdf');
+            }
+            if (gettype($this->archivo2) != 'string') {
+                $this->archivo2 = $this->archivo2->store('product/pdf2');
             }
             Product::create([
                 'brand_id' => $this->brand_id,
@@ -98,6 +104,7 @@ class ProductForm extends Form
                 'observaciones' => $this->observaciones,
                 'image' => $this->image,
                 'archivo' => $this->archivo,
+                'archivo2' => $this->archivo2,
             ]);
             infoLog('Product store', $this->code);
             return true;
@@ -119,6 +126,9 @@ class ProductForm extends Form
                 Storage::delete($this->product->archivo);
                 $this->archivo = $this->archivo->store('product/pdf');
             }
+            if (gettype($this->archivo2) != 'string') {
+                $this->archivo2 = $this->archivo2->store('product/pdf2');
+            }
             $this->product->update([
                 'brand_id' => $this->brand_id,
                 'category_id' => $this->category_id,
@@ -138,6 +148,7 @@ class ProductForm extends Form
                 'observaciones' => $this->observaciones,
                 'image' => $this->image,
                 'archivo' => $this->archivo,
+                'archivo2' => $this->archivo2,
             ]);
             infoLog('Product update', $this->code);
             return true;

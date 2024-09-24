@@ -139,7 +139,10 @@ class SupplierLive extends Component
     }
     public function pdf(Supplier $supplier)
     {
-        //dd($supplier->archivo);
-       return Storage::download($supplier->archivo);
+        if (Storage::disk('public')->exists($supplier->archivo)) {
+            return Storage::download($supplier->archivo);
+        }else{
+            $this->message('error', 'Error!', 'El archivo no existe!');
+        }
     }
 }

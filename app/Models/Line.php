@@ -13,6 +13,9 @@ class Line extends Model
         'name',
         'logo',
         'fondo',
+        'firma_autorizacion',
+        'fondo_autorizacion',
+        'fondo_rotulo',
         'archivo',
         'isActive',
     ];

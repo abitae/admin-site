@@ -21,6 +21,7 @@ use App\Livewire\Crm\SupplierLive;
 use App\Livewire\Inventario\EntryLive;
 use App\Livewire\Inventario\ExitLive;
 use App\Livewire\Inventario\InventoryLive;
+use App\Livewire\Inventario\MovimientoLive;
 use App\Livewire\Inventario\ProductoStore;
 use App\Livewire\Inventario\WarehouseLive;
 
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/warehouses', WarehouseLive::class)->name('inventario.warehouses');
     Route::get('/inventory', InventoryLive::class)->name('inventario.inventory');
+    Route::get('/movimientos', MovimientoLive::class)->name('inventario.movimientos');
     Route::get('/inventory/entry/{id}', EntryLive::class)->name('inventario.entry');
     Route::get('/inventory/exit/{id}', ExitLive::class)->name('inventario.exit');
     Route::get('/inventory/product', ProductoStore::class)->name('inventario.product');

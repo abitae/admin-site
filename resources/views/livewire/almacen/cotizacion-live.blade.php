@@ -183,29 +183,50 @@
                             @endforelse
                         </x-select-input>
                         <x-button.button-upload wire:click="exportar">
-                            EXPORTAR
+                            COTIZACION
                         </x-button.button-upload>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="max-w-3xl p-8 mx-auto rounded-lg shadow-lg bg-background text-card-foreground dark:text-white">
+            <div class="pt-4 mb-6 border-t border-muted">
+                @isset($customerSelect)
+                    <x-text-input wire:model.live='num_coti' type='text' for='forma_pago' label='Codigo Cotizacion'
+                        placeholder='773-ISPSAC/SSP-2024' />
+                @endisset
+                @isset($customerSelect)
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cuerpo
+                        message</label>
+                    <textarea id="message" rows="4" wire:model.live='cuerpo'
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Reciba un cordial saludo en representación de la marca [Marca]. A continuación, adjuntamos nuestras propuestas a susrequerimientos según el catálogo electrónico de PERÚ COMPRAS enmarcadas en el CONVENIO EXT-CE-2023-11 MOBILIARIO ENGENERAL."></textarea>
+                @endisset
+            </div>
+        </div>
         <div class="max-w-3xl p-8 mx-auto rounded-lg shadow-lg bg-background text-card-foreground dark:text-white">
             <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold">CONDICIONES</h1>
-                </div>
-                <div class="text-right">   
+                <h1 class="text-2xl font-bold">CONDICIONES</h1>
+                <div class="text-left">
                     @isset($customerSelect)
-                        <p>Forma de pago : {{ $customerSelect->code }}</p>
-                        <p>Tiempo de entrega : {{ $customerSelect->first_name }}</p>
-                        <p>Validez de la cotización: {{ $customerSelect->email }}</p>
-                        <p>Email: {{ $customerSelect->phone }}</p>
+                        <p><x-text-input wire:model.live='forma_pago' type='text' for='forma_pago'
+                                label='Forma de pago' placeholder='CONTADO' /></p>
+                        <p><x-text-input wire:model.live='time_entrega' type='text' for='time_entrega'
+                                label='Tiempo de entrega' placeholder='3 DIAS' /></p>
+                        <p><x-text-input wire:model.live='valido_coti' type='text' for='valido_coti'
+                                label='Validez de la cotización' placeholder='UN ANO' /></p>
                     @endisset
                 </div>
-            </div>
-            <div class="pt-4 mb-6 border-t border-muted">
-
+                <div class="text-right">
+                    @isset($customerSelect)
+                        <p><x-text-input wire:model.live='mensage01' type='text' for='mensage01' label='Mensage 01'
+                                placeholder='mensage01' /></p>
+                        <p><x-text-input wire:model.live='mensage02' type='text' for='mensage02' label='Mensage 02'
+                                placeholder='mensage02' /></p>
+                        <p><x-text-input wire:model.live='mensage03' type='text' for='mensage03' label='Mensage 03'
+                                placeholder='mensage03' /></p>
+                    @endisset
+                </div>
             </div>
         </div>
     </div>

@@ -27,6 +27,7 @@ class Product extends Model
         'observaciones',
         'image',
         'archivo',
+        'archivo2',
         'isActive',
     ];
     public function category()

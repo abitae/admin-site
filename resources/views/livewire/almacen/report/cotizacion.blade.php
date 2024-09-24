@@ -1,7 +1,7 @@
 @php
     function convertImageBase64($image)
     {
-        $pathImage = 'storage/'. $image;
+        $pathImage = 'storage/' . $image;
         $arrContextOptions = [
             'ssl' => [
                 'verify_peer' => false,
@@ -156,10 +156,10 @@
         <img class="logo" src="{{ convertImageBase64($line->logo) }}" alt="">
         <div class="title">
             <h2>COTIZACIÓN</h2>
-            <h4>N° 773-ISPSAC/SSP-2024</h4>
+            <h4>N° {{ $num_coti ?? '[CODIGO_COTIZACION]' }}</h4>
         </div>
         <div class="fecha">
-            Lima, 25 de Junio del 2024
+            Lima, {{ $fecha }}
         </div>
         <div class="customer">
             <p>
@@ -173,9 +173,7 @@
             </p>
         </div>
         <div class="saludo">
-            <p>Reciba un cordial saludo en representación de la marca {{ $line->name }}. A continuación, adjuntamos nuestras
-                propuestas a susrequerimientos según el catálogo electrónico de PERÚ COMPRAS enmarcadas en el CONVENIO
-                EXT-CE-2023-11 MOBILIARIO ENGENERAL.</p>
+            <p>{{ $cuerpo ?? '' }}</p>
             <p>Agradecemos la oportunidad de servirle y quedamos a su disposición para cualquier consulta o aclaración
                 adicional.
             </p>
@@ -265,16 +263,18 @@
         <div class="condition">
             <h4>CONDICIONES DE VENTA</h4>
             <ul>
-                <li>Forma de pago: AL CONTADO.</li>
-                <li>Tiempo de entrega: 12 a 14 días.</li>
-                <li>Validez de la co zación: 3 días.</li>
-                <li>Una vez recibidos los productos no se pueden devolver.</li>
-                <li>Los productos son iguales de acuerdo a la Ficha Técnica.</li>
-                <li>Una vez recibida la muestra se considerará aprobada, salvo comunicación escrita que indique lo
-                    contrario.</li>
-                <li>La entrega coordina la marca con la parte usuaria para lo cual de acuerdo a su OCAM facilitar toda
-                    su
-                    documentación.</li>
+                <li>Forma de pago: {{ $forma_pago ?? 'CONTADO' }}</li>
+                <li>Tiempo de entrega: {{ $time_entrega ?? '12 a 14 días' }} </li>
+                <li>Validez de la cozación: {{ $valido_coti ?? '3 días' }}</li>
+                @isset($mensage01)
+                    <li>{{ $mensage01 ?? '' }}</li>
+                @endisset
+                @isset($mensage02)
+                    <li>{{ $mensage02 ?? '' }}</li>
+                @endisset
+                @isset($mensage03)
+                    <li>{{ $mensage03 ?? '' }}</li>
+                @endisset
             </ul>
         </div>
     </div>

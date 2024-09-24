@@ -130,7 +130,7 @@
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="Monto aproximado"
                                                     class="block text-sm font-medium text-gray-900 dark:text-white">
-                                                    Precio Compra
+                                                    Precio Venta
                                                 </label>
                                                 <input min="0" step=".01" type="number"
                                                     wire:model.live='entryForm.unit_price' id="unit_price"

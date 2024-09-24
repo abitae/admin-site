@@ -20,7 +20,7 @@ class SupplierFactory extends Factory
             'type_code' => $this->faker->randomElement(['dni', 'ruc']),
             'code' => $this->faker->randomNumber(8, false),
             'first_name' => $this->faker->name(),
-            'phone' => $this->faker->tollFreePhoneNumber,
+            'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->email,
             'address' => $this->faker->address,
             'archivo' => '',

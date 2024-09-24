@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('observaciones')->nullable();
             $table->string('image')->nullable();
             $table->string('archivo')->nullable();
+            $table->string('archivo2')->nullable();
             $table->boolean('isActive')->default(true);
             $table->timestamps();
         });

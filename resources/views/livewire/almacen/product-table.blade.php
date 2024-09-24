@@ -33,7 +33,8 @@
                             <th scope="col"
                                 class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-white">
                                 Categoria
-                            </th><th scope="col"
+                            </th>
+                            <th scope="col"
                                 class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-white">
                                 Estado
                             </th>
@@ -51,13 +52,18 @@
                                     <img width="120" height="120" src="{{ asset("storage/$product->image") }}">
                                 </td>
                                 <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
-                                    <a target="_blank" href='{{ asset("storage/$product->archivo") }}'
-                                        class="mb-1 text-xs text-hover-primary">
-                                        {{ $product->code }}</a>
+                                    <p class="mb-1 text-xs text-hover-primary">
+                                        {{ $product->code }}</p>
                                     <p class="mb-1 text-xs text-hover-primary">
                                         {{ $product->code_fabrica }}</p>
                                     <p class="mb-1 text-xs text-hover-primary">
-                                        {{ $product->code_peru }}
+                                        {{ $product->code_peru }}</p>
+                                    <a target="_blank" href='{{ asset("storage/$product->archivo") }}'
+                                        class="mb-1 text-xs text-green-600 bg-yellow-200 text-hover-primary">
+                                        Ficha Tecnica</a>
+                                    <a target="_blank" href='{{ asset("storage/$product->archivo2") }}'
+                                        class="mb-1 text-xs text-yellow-600 bg-green-500 text-hover-primary">
+                                        Certificado</a>
                                 </td>
                                 <td class="p-4 text-xs font-normal text-gray-500 dark:text-white">
                                     {{ $product->description }}
